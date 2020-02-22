@@ -2,24 +2,25 @@
 
 #include <stdexcept>
 #include <string>
-#include <variant>
 
-literal_t::literal_t(const std::string &text) : type(type_t::STRING), value(text)
+#include "variant.hpp"
+
+variant_t parse_literal(const std::string &s)
 {
     // Deal with char literal
-    if ((text.front() == '\'') && (text.back() == '\''))
+    if ((s.front() == '\'') && (s.back() == '\''))
     {
-        char c = text.at(1);
+        char c = s.at(1);
         if (c == '\\')
         {
-            if (text.size() != 4)
+            if (s.size() != 4)
             {
                 std::string error = "Literal parser error. Text could not be converted to char. text:";
-                error.append(text);
+                error.append(s);
                 throw std::runtime_error(error);
             }
 
-            switch (text.at(2))
+            switch (s.at(2))
             {
             case 'a': // bell
                 c = '\a';
@@ -61,50 +62,42 @@ literal_t::literal_t(const std::string &text) : type(type_t::STRING), value(text
         }
         else
         {
-            if (text.size() != 3)
+            if (s.size() != 3)
             {
                 std::string error = "Literal parser error. Text could not be converted to char. text:";
-                error.append(text);
+                error.append(s);
                 throw std::runtime_error(error);
             }
         }
 
-        type = type_t::CHAR;
-        value = c;
-        return;
+        return variant_t(c);
     }
 
     // Deal with boolean literal.
-    if ((text == "true") || (text == "TRUE") || (text == "True"))
+    if ((s == "true") || (s == "TRUE") || (s == "True"))
     {
-        type = type_t::BOOL;
-        value = true;
-        return;
+        return variant_t(true);
     }
-    if ((text == "false") || (text == "FALSE") || (text == "False"))
+    if ((s == "false") || (s == "FALSE") || (s == "False"))
     {
-        type = type_t::BOOL;
-        value = false;
-        return;
+        return variant_t(false);
     }
 
     // Deal with float or double here.
-    if (text.find('.') != std::string::npos)
+    if (s.find('.') != std::string::npos)
     {
         // Float or Double.
-        if ((text.find('f') != std::string::npos) || (text.find('F') != std::string::npos))
+        if ((s.find('f') != std::string::npos) || (s.find('F') != std::string::npos))
         {
             // Float.
             try
             {
-                type = type_t::FLOAT;
-                value = std::stof(text);
-                return;
+                return variant_t(std::stof(s));
             }
             catch (std::logic_error &)
             {
                 std::string error = "Literal parser error. Text could not be converted to float. text:";
-                error.append(text);
+                error.append(s);
                 throw std::runtime_error(error);
             }
         }
@@ -113,14 +106,12 @@ literal_t::literal_t(const std::string &text) : type(type_t::STRING), value(text
             // Double.
             try
             {
-                type = type_t::DOUBLE;
-                value = std::stod(text);
-                return;
+                return variant_t(std::stod(s));
             }
             catch (std::logic_error &)
             {
                 std::string error = "Literal parser error. Text could not be converted to double. text:";
-                error.append(text);
+                error.append(s);
                 throw std::runtime_error(error);
             }
         }
@@ -129,7 +120,7 @@ literal_t::literal_t(const std::string &text) : type(type_t::STRING), value(text
     // Assume literal will be an integer and test the assumption by looking at all characters.
     auto integer = true;
     auto first = true;
-    for (const auto &c : text)
+    for (const auto &c : s)
     {
         auto digit = std::isdigit(c);
         auto hyphen = (c == '-');
@@ -156,44 +147,16 @@ literal_t::literal_t(const std::string &text) : type(type_t::STRING), value(text
     {
         try
         {
-            type = type_t::INT;
-            value = std::stoi(text);
-            return;
+            return variant_t(std::stoi(s));
         }
         catch (std::logic_error &)
         {
             std::string error = "Literal parser error. Text could not be converted to int. text:";
-            error.append(text);
+            error.append(s);
             throw std::runtime_error(error);
         }
     }
-}
 
-std::string literal_t::to_string() const
-{
-    std::string out;
-    out.append("Literal: type=");
-    switch (type)
-    {
-    case type_t::INT:
-        out.append("INT, value=[").append("int,").append(std::to_string(std::get<int>(value))).append("]");
-        break;
-    case type_t::BOOL:
-        out.append("BOOL, value=[").append("bool,").append(std::to_string(std::get<bool>(value))).append("]");
-        break;
-    case type_t::CHAR:
-        out.append("CHAR, value=[").append("char,").append(std::to_string(static_cast<int>(std::get<char>(value)))).append("]");
-        break;
-    case type_t::FLOAT:
-        out.append("FLOAT, value=[").append("float,").append(std::to_string(std::get<float>(value))).append("]");
-        break;
-    case type_t::DOUBLE:
-        out.append("DOUBLE, value=[").append("double,").append(std::to_string(std::get<double>(value))).append("]");
-        break;
-    case type_t::STRING:
-        out.append("STRING, value=[").append("string,").append(std::get<std::string>(value)).append("]");
-        break;
-    }
-
-    return out;
+    // If we get here, the text is a string.
+    return variant_t(s);
 }

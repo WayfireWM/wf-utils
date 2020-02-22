@@ -52,7 +52,7 @@ public:
 
     virtual ~test_interface_t() override;
 
-    virtual symbol_t::value_t get(const std::string &identifier, bool &error) override
+    virtual variant_t get(const std::string &identifier, bool &error) override
     {
         error = false;
         if (_test != nullptr)
@@ -68,24 +68,24 @@ public:
         }
 
         error = true;
-        return symbol_t::value_t();
+        return variant_t("");
     }
 
-    virtual bool execute(const std::string &name, const std::vector<symbol_t::value_t> &args) override
+    virtual bool execute(const std::string &name, const std::vector<variant_t> &args) override
     {
         auto error = _test == nullptr;
         if (!error)
         {
             if ((name == "set") && (args.size() == 2))
             {
-                auto property = std::get<std::string>(args.at(0));
+                auto property = get_string(args.at(0));
                 if (property == "property_a")
                 {
-                    _test->property_a = std::get<int>(args.at(1));
+                    _test->property_a = get_int(args.at(1));
                 }
                 else if (property == "property_b")
                 {
-                    _test->set_property_b(std::get<double>(args.at(1)));
+                    _test->set_property_b(get_double(args.at(1)));
                 }
                 else
                 {

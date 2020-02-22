@@ -5,7 +5,7 @@
 #include <string>
 #include <string_view>
 
-#include "literal.hpp"
+#include "variant.hpp"
 
 static const std::set<std::string_view> SIGNALS = {"created"};
 static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on"};
@@ -26,18 +26,14 @@ public:
         SIGNAL,
     };
 
-    using value_t = literal_t::value_t;
-
     symbol_t();
     symbol_t(type_t t);
-    symbol_t(const literal_t &literal);
-
-    std::string to_string() const;
+    symbol_t(const variant_t &v);
 
     type_t type;
-    literal_t::type_t literal_type;
-    value_t value;
+    variant_t value;
 };
 
+std::string to_string(const symbol_t &s);
 
 #endif // SYMBOL_HPP

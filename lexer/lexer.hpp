@@ -10,6 +10,7 @@
 
 #include "literal.hpp"
 #include "symbol.hpp"
+#include "variant.hpp"
 
 static const std::set<std::string_view> DELIMITERS = {" ", "\'", "\""};
 
@@ -27,9 +28,9 @@ public:
     const std::string &text() const;
     std::size_t current_symbol_position() const;
 private:
-    literal_t _parse_literal();
-    literal_t _parse_encapsulated_literal(const std::string &s_bound, const std::string &e_bound);
-    literal_t _parse_comment_literal();
+    variant_t _parse_literal();
+    variant_t _parse_encapsulated_literal(const std::string &s_bound, const std::string &e_bound);
+    variant_t _parse_comment_literal();
 
     std::size_t _size;
     std::string _text;

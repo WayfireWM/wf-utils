@@ -32,7 +32,7 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
     {
         // Expect the first symbol to be the 'on' keyword.
         auto symbol = lexer.parse_symbol();
-        if ((symbol.type != symbol_t::type_t::KEYWORD) || (std::get<std::string>(symbol.value) != "on"))
+        if ((symbol.type != symbol_t::type_t::KEYWORD) || (get_string(symbol.value) != "on"))
         {
             throw std::runtime_error("Rule parser error. Expected 'on' keyword.");
         }
@@ -43,11 +43,11 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
         {
             throw std::runtime_error("Rule parser error. Expected signal.");
         }
-        signal = std::get<std::string>(symbol.value);
+        signal = get_string(symbol.value);
 
         // Expect the 'if' keyword next.
         symbol = lexer.parse_symbol();
-        if ((symbol.type != symbol_t::type_t::KEYWORD) || (std::get<std::string>(symbol.value) != "if"))
+        if ((symbol.type != symbol_t::type_t::KEYWORD) || (get_string(symbol.value) != "if"))
         {
             throw std::runtime_error("Rule parser error. Expected 'if' keyword.");
         }
@@ -57,7 +57,7 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
 
         // Expect the next symbol to be the 'then' keyword.
         symbol = lexer.parse_symbol();
-        if ((symbol.type != symbol_t::type_t::KEYWORD) || (std::get<std::string>(symbol.value) != "then"))
+        if ((symbol.type != symbol_t::type_t::KEYWORD) || (get_string(symbol.value) != "then"))
         {
             throw std::runtime_error("Rule parser error. Expected 'then' keyword.");
         }
@@ -69,7 +69,7 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
         symbol = lexer.parse_symbol();
         if (symbol.type == symbol_t::type_t::KEYWORD)
         {
-            if (std::get<std::string>(symbol.value) != "else")
+            if (get_string(symbol.value) != "else")
             {
                 throw std::runtime_error("Rule parser error. Expected 'else' keyword.");
             }
@@ -85,7 +85,7 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
         if (symbol.type != symbol_t::type_t::END)
         {
             std::string error = "Rule parser error. Unexpected symbol: ";
-            error.append(symbol.to_string());
+            error.append(to_string(symbol));
             throw std::runtime_error(error);
         }
     }

@@ -26,7 +26,7 @@ std::shared_ptr<condition_t> condition_parser_t::parse(lexer_t &lexer)
 void condition_parser_t::_expression(lexer_t &lexer)
 {
     _term(lexer);
-    while ((_symbol.type == symbol_t::type_t::OPERATOR) && (std::get<std::string>(_symbol.value) == "|"))
+    while ((_symbol.type == symbol_t::type_t::OPERATOR) && (get_string(_symbol.value) == "|"))
     {
         auto or_condition = std::make_shared<or_condition_t>();
         or_condition->left = _root;
@@ -39,7 +39,7 @@ void condition_parser_t::_expression(lexer_t &lexer)
 void condition_parser_t::_term(lexer_t &lexer)
 {
     _factor(lexer);
-    while ((_symbol.type == symbol_t::type_t::OPERATOR) && (std::get<std::string>(_symbol.value) == "&"))
+    while ((_symbol.type == symbol_t::type_t::OPERATOR) && (get_string(_symbol.value) == "&"))
     {
         auto and_condition = std::make_shared<and_condition_t>();
         and_condition->left = _root;
@@ -56,12 +56,12 @@ void condition_parser_t::_factor(lexer_t &lexer)
     if (_symbol.type == symbol_t::type_t::IDENTIFIER)
     {
         // Identifier.
-        auto identifier = std::get<std::string>(_symbol.value);
+        auto identifier = get_string(_symbol.value);
 
         // Keyword.
         _symbol = lexer.parse_symbol();
         // TODO: Validate.
-        auto keyword = std::get<std::string>(_symbol.value);
+        auto keyword = get_string(_symbol.value);
 
         // Value.
         _symbol = lexer.parse_symbol();
@@ -75,14 +75,14 @@ void condition_parser_t::_factor(lexer_t &lexer)
 
         _symbol = lexer.parse_symbol();
     }
-    else if ((_symbol.type == symbol_t::type_t::OPERATOR) && (std::get<std::string>(_symbol.value) == "!"))
+    else if ((_symbol.type == symbol_t::type_t::OPERATOR) && (get_string(_symbol.value) == "!"))
     {
         auto not_condition = std::make_shared<not_condition_t>();
         _factor(lexer);
         not_condition->child = _root;
         _root = not_condition;
     }
-    else if ((_symbol.type == symbol_t::type_t::STRUCTURAL) && (std::get<std::string>(_symbol.value) == "("))
+    else if ((_symbol.type == symbol_t::type_t::STRUCTURAL) && (get_string(_symbol.value) == "("))
     {
         _expression(lexer);
         _symbol = lexer.parse_symbol(); // Discards )

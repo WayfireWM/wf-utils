@@ -3,11 +3,11 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
-#include <variant>
 
 #include "action/action.hpp"
 #include "lexer/lexer.hpp"
 #include "lexer/symbol.hpp"
+#include "variant.hpp"
 
 std::shared_ptr<action_t> action_parser_t::parse(lexer_t &lexer)
 {
@@ -16,9 +16,9 @@ std::shared_ptr<action_t> action_parser_t::parse(lexer_t &lexer)
     {
         throw std::runtime_error("Action parser error. Expected identifier.");
     }
-    auto name = std::get<std::string>(symbol.value);
+    auto name = get_string(symbol.value);
 
-    std::vector<symbol_t::value_t> args;
+    std::vector<variant_t> args;
     auto done = false;
     while (!done)
     {

@@ -7,21 +7,22 @@
 
 #include "literal.hpp"
 #include "utils.hpp"
+#include "variant.hpp"
 
-symbol_t::symbol_t()
+symbol_t::symbol_t() : type(type_t::END), value("")
 {
 }
 
-symbol_t::symbol_t(type_t t) : type(t), literal_type(literal_t::type_t::STRING), value("")
+symbol_t::symbol_t(type_t t) : type(t), value("")
 {
 }
 
-symbol_t::symbol_t(const literal_t &literal) : type(type_t::LITERAL), literal_type(literal.type), value(literal.value)
+symbol_t::symbol_t(const variant_t &v) : type(type_t::LITERAL), value(v)
 {
     // String literals can also be keywords, comments or identifiers. Check for this.
-    if (literal.type == literal_t::type_t::STRING)
+    if (is_string(value))
     {
-        auto literal_value = std::get<std::string>(literal.value);
+        auto literal_value = get_string(value);
 
         if ((literal_value.front() == '\"') && (literal_value.back() == '\"'))
         {
@@ -75,53 +76,33 @@ symbol_t::symbol_t(const literal_t &literal) : type(type_t::LITERAL), literal_ty
     }
 }
 
-std::string symbol_t::to_string() const
+std::string to_string(const symbol_t &s)
 {
     std::string out = "Symbol [";
-    switch (type)
+    switch (s.type)
     {
-    case type_t::END:
+    case symbol_t::type_t::END:
         out.append("END");
         break;
-    case type_t::IDENTIFIER:
-        out.append("Identifier: ").append(std::get<std::string>(value));
+    case symbol_t::type_t::IDENTIFIER:
+        out.append("Identifier: ").append(get_string(s.value));
         break;
-    case type_t::LITERAL:
+    case symbol_t::type_t::LITERAL:
         out.append("Literal: [");
-        switch (literal_type)
-        {
-        case literal_t::type_t::INT:
-            out.append("int: ").append(std::to_string(std::get<int>(value)));
-            break;
-        case literal_t::type_t::CHAR:
-            out.append("char: ").append(std::to_string(std::get<char>(value)));
-            break;
-        case literal_t::type_t::BOOL:
-            out.append("bool: ").append(std::get<bool>(value) ? "true" : "false");
-            break;
-        case literal_t::type_t::FLOAT:
-            out.append("float: ").append(std::to_string(std::get<float>(value)));
-            break;
-        case literal_t::type_t::DOUBLE:
-            out.append("double: ").append(std::to_string(std::get<double>(value)));
-            break;
-        case literal_t::type_t::STRING:
-            out.append("string: ").append(std::get<std::string>(value));
-            break;
-        }
+        out.append(to_string(s.value));
         out.append("]");
         break;
-    case type_t::OPERATOR:
-        out.append("Operator: ").append(std::get<std::string>(value));
+    case symbol_t::type_t::OPERATOR:
+        out.append("Operator: ").append(get_string(s.value));
         break;
-    case type_t::KEYWORD:
-        out.append("Keyword: ").append(std::get<std::string>(value));
+    case symbol_t::type_t::KEYWORD:
+        out.append("Keyword: ").append(get_string(s.value));
         break;
-    case type_t::STRUCTURAL:
-        out.append("Structural: ").append(std::get<std::string>(value));
+    case symbol_t::type_t::STRUCTURAL:
+        out.append("Structural: ").append(get_string(s.value));
         break;
-    case type_t::SIGNAL:
-        out.append("Signal: ").append(std::get<std::string>(value));
+    case symbol_t::type_t::SIGNAL:
+        out.append("Signal: ").append(get_string(s.value));
         break;
     }
     out.append("]");

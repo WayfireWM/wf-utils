@@ -89,7 +89,7 @@ std::size_t lexer_t::current_symbol_position() const {
     return _symbol_position;
 }
 
-literal_t lexer_t::_parse_literal()
+variant_t lexer_t::_parse_literal()
 {
     // Catch out char and string literals first.
     auto c = _text.substr(_parse_position, 1);
@@ -102,7 +102,7 @@ literal_t lexer_t::_parse_literal()
     if ((contains(OPERATORS, c)) || (contains(STRUCTURES, c)))
     {
          ++_parse_position;
-        return literal_t(c);
+        return parse_literal(c);
     }
 
     // A literal is denoted from _position until the first occurrence of one of ')', '(', '&', '|', '!', ' ', '"', '\''
@@ -130,10 +130,10 @@ literal_t lexer_t::_parse_literal()
     auto length = end - _parse_position;
     auto literal_text = _text.substr(_parse_position, length);
     _parse_position += length;
-    return literal_t(literal_text);
+    return parse_literal(literal_text);
 }
 
-literal_t lexer_t::_parse_encapsulated_literal(const std::string &s_bound, const std::string &e_bound)
+variant_t lexer_t::_parse_encapsulated_literal(const std::string &s_bound, const std::string &e_bound)
 {
     // Check if the boundary is at the end of the of the line.
     auto begin = _parse_position + s_bound.size();
@@ -176,13 +176,13 @@ literal_t lexer_t::_parse_encapsulated_literal(const std::string &s_bound, const
     auto length = (found_at + e_bound.size()) - _parse_position;
     auto literal_text = _text.substr(_parse_position, length);
     _parse_position += length;
-    return literal_t(literal_text);
+    return parse_literal(literal_text);
 }
 
-literal_t lexer_t::_parse_comment_literal()
+variant_t lexer_t::_parse_comment_literal()
 {
     // Comment literal runs from the comment sign to the end of the line.
     auto literal_text = _text.substr(_parse_position);
     _parse_position = _size;
-    return literal_t(literal_text);
+    return parse_literal(literal_text);
 }

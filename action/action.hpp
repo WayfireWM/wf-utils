@@ -4,13 +4,14 @@
 #include <string>
 #include <vector>
 
-#include "lexer/symbol.hpp"
+#include "variant.hpp"
+
 #include "rule/rule_interface.hpp"
 
 class action_t
 {
 public:
-    action_t(const std::string &name, const std::vector<symbol_t::value_t> &args);
+    action_t(const std::string &name, const std::vector<variant_t> &args);
 
     /**
      * @brief execute
@@ -20,7 +21,7 @@ public:
     bool execute(rule_interface_t &interface);
 private:
     std::string _name;
-    std::vector<symbol_t::value_t> _args;
+    std::vector<variant_t> _args;
 };
 
 #endif // ACTION_HPP
