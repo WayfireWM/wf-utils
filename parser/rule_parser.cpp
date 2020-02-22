@@ -81,19 +81,9 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
             symbol = lexer.parse_symbol();
         }
 
-        // Expect EOL.
-        if (symbol.type == symbol_t::type_t::END_OF_LINE)
+        // Expect END.
+        if (symbol.type != symbol_t::type_t::END)
         {
-            // Expect EOF.
-            symbol = lexer.parse_symbol();
-            if (symbol.type != symbol_t::type_t::END_OF_TEXT)
-            {
-                std::string error = "Rule parser error. Unexpected symbol: ";
-                error.append(symbol.to_string());
-                throw std::runtime_error(error);
-            }
-        }
-        else {
             std::string error = "Rule parser error. Unexpected symbol: ";
             error.append(symbol.to_string());
             throw std::runtime_error(error);
@@ -101,8 +91,8 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
     }
     catch (std::runtime_error &e)
     {
-        std::cout << "Malformed input on line " << (lexer.current_line_number() + 1) << ":" << std::endl;
-        std::cout << lexer.current_line() << std::endl;
+        std::cout << "Malformed input:" << std::endl;
+        std::cout << lexer.text() << std::endl;
         std::string pad;
         auto pos = lexer.current_symbol_position();
         for (std::size_t i = 0; i < pos; ++i)

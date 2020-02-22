@@ -18,8 +18,7 @@ class symbol_t
 public:
     enum class type_t
     {
-        END_OF_LINE,
-        END_OF_TEXT,
+        END,
         IDENTIFIER,
         LITERAL,
         OPERATOR,

@@ -80,11 +80,8 @@ std::string symbol_t::to_string() const
     std::string out = "Symbol [";
     switch (type)
     {
-    case type_t::END_OF_LINE:
-        out.append("EOL");
-        break;
-    case type_t::END_OF_TEXT:
-        out.append("EOF");
+    case type_t::END:
+        out.append("END");
         break;
     case type_t::IDENTIFIER:
         out.append("Identifier: ").append(std::get<std::string>(value));
