@@ -28,6 +28,7 @@ public:
 
     using value_t = literal_t::value_t;
 
+    symbol_t();
     symbol_t(type_t t);
     symbol_t(const literal_t &literal);
 

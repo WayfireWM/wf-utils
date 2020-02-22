@@ -8,6 +8,10 @@
 #include "literal.hpp"
 #include "utils.hpp"
 
+symbol_t::symbol_t()
+{
+}
+
 symbol_t::symbol_t(type_t t) : type(t), literal_type(literal_t::type_t::STRING), value("")
 {
 }

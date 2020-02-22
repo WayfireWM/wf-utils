@@ -1,13 +1,19 @@
 #ifndef CONDITION_HPP
 #define CONDITION_HPP
 
+#include <string>
+
+#include "rule/rule_interface.hpp"
+
 class condition_t
 {
 public:
     condition_t();
     virtual ~condition_t();
 
-    virtual bool evaluate(bool &error);
+    virtual bool evaluate(rule_interface_t &interface, bool &error) = 0;
+
+    virtual std::string to_string() const = 0;
 };
 
 #endif // CONDITION_HPP

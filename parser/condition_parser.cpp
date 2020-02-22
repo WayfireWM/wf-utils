@@ -1,22 +1,93 @@
 #include "condition_parser.hpp"
 
+#include <iostream>
 #include <memory>
 
 #include "condition/condition.hpp"
+#include "condition/logic_condition.hpp"
+#include "condition/test_condition.hpp"
 #include "lexer/lexer.hpp"
 #include "lexer/symbol.hpp"
 
+condition_parser_t::condition_parser_t()
+{
+}
+
 std::shared_ptr<condition_t> condition_parser_t::parse(lexer_t &lexer)
 {
-    while (true)
-    {
-        auto symbol = lexer.parse_symbol();
-        if ((symbol.type == symbol_t::type_t::KEYWORD) && (std::get<std::string>(symbol.value) == "then"))
-        {
-            lexer.reverse();
-            break;
-        }
-    }
+    _expression(lexer);
 
-    return std::make_shared<condition_t>();
+    lexer.reverse();
+    std::cout << _root->to_string() << std::endl;
+
+    return _root;
+}
+
+void condition_parser_t::_expression(lexer_t &lexer)
+{
+    _term(lexer);
+    while ((_symbol.type == symbol_t::type_t::OPERATOR) && (std::get<std::string>(_symbol.value) == "|"))
+    {
+        auto or_condition = std::make_shared<or_condition_t>();
+        or_condition->left = _root;
+        _term(lexer);
+        or_condition->right = _root;
+        _root = or_condition;
+    }
+}
+
+void condition_parser_t::_term(lexer_t &lexer)
+{
+    _factor(lexer);
+    while ((_symbol.type == symbol_t::type_t::OPERATOR) && (std::get<std::string>(_symbol.value) == "&"))
+    {
+        auto and_condition = std::make_shared<and_condition_t>();
+        and_condition->left = _root;
+        _factor(lexer);
+        and_condition->right = _root;
+        _root = and_condition;
+    }
+}
+
+void condition_parser_t::_factor(lexer_t &lexer)
+{
+    _symbol = lexer.parse_symbol();
+
+    if (_symbol.type == symbol_t::type_t::IDENTIFIER)
+    {
+        // Identifier.
+        auto identifier = std::get<std::string>(_symbol.value);
+
+        // Keyword.
+        _symbol = lexer.parse_symbol();
+        // TODO: Validate.
+        auto keyword = std::get<std::string>(_symbol.value);
+
+        // Value.
+        _symbol = lexer.parse_symbol();
+        // TODO: Validate.
+
+        // Create condition.
+        if (keyword == "equals")
+        {
+            _root = std::make_shared<equals_condition_t>(identifier, _symbol.value);
+        }
+
+        _symbol = lexer.parse_symbol();
+    }
+    else if ((_symbol.type == symbol_t::type_t::OPERATOR) && (std::get<std::string>(_symbol.value) == "!"))
+    {
+        auto not_condition = std::make_shared<not_condition_t>();
+        _factor(lexer);
+        not_condition->child = _root;
+        _root = not_condition;
+    }
+    else if ((_symbol.type == symbol_t::type_t::STRUCTURAL) && (std::get<std::string>(_symbol.value) == "("))
+    {
+        _expression(lexer);
+        _symbol = lexer.parse_symbol(); // Discards )
+    }
+    else {
+        throw std::runtime_error("Condition parser error. Unexpected symbol.");
+    }
 }

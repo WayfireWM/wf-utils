@@ -8,6 +8,7 @@
 #include "utils.hpp"
 
 #include "lexer/lexer.hpp"
+#include "parser/condition_parser.hpp"
 #include "parser/rule_parser.hpp"
 #include "rule/rule.hpp"
 #include "rule/rule_interface.hpp"
@@ -116,19 +117,42 @@ test_interface_t::~test_interface_t()
 
 int main()
 {
+    /*
+    lexer_t lexer("(a equals 3 | a equals 2) & (! x equals 4)");
+    condition_parser_t parser;
+
+    try
+    {
+        auto condition = parser.parse(lexer);
+    }
+    catch (std::runtime_error &e)
+    {
+        std::cout << "Malformed input:" << std::endl;
+        std::cout << lexer.text() << std::endl;
+        std::string pad;
+        auto pos = lexer.current_symbol_position();
+        for (std::size_t i = 0; i < pos; ++i)
+        {
+            pad.append(" ");
+        }
+        pad.append("^ ");
+        std::cout << pad << e.what() << std::endl;
+
+    }
+    */
+
+
+
     std::string text_reverse = "one two three four five";
 
     auto data = std::make_shared<test_t>();
-    data->property_a = 5;
-    data->set_property_b(0.5);
+    data->property_a = 4;
 
     test_interface_t data_interface(data);
 
-    std::set<std::string> text = {
-        "on created if moo then set property_b 0.8",
-        "on created if moo then set property_b 8.0 else set property_b 4.0",
-        "on created if moo then maximize",
-        "on created if moo then minimize",
+    std::vector<std::string> text = {
+        "on created if property_a equals 4 then set property_b 0.4",
+        "on created if (property_a equals 4) | (property_a equals 8) then maximize else minimize",
     };
 
     lexer_t lexer;
@@ -146,6 +170,7 @@ int main()
     {
         rule->apply("created", data_interface);
     }
+    /*
 
     lexer.reset(text_reverse);
 
@@ -260,6 +285,6 @@ int main()
     s = lexer.parse_symbol();
     p = lexer.current_symbol_position();
     std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
-
+*/
     return 0;
 }

@@ -29,7 +29,7 @@ bool rule_t::apply(const std::string &signal, rule_interface_t &interface)
     bool error = false;
     if (signal == _signal)
     {
-        auto check_result = _condition->evaluate(error);
+        auto check_result = _condition->evaluate(interface, error);
         if (!error)
         {
             if (check_result)

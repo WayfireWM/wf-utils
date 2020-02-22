@@ -14,7 +14,9 @@ SOURCES += \
     action/action.cpp \
     rule/rule.cpp \
     rule/rule_interface.cpp \
-    condition/condition.cpp
+    condition/condition.cpp \
+    condition/logic_condition.cpp \
+    condition/test_condition.cpp
 
 HEADERS += \
     action/action.hpp \
@@ -27,4 +29,6 @@ HEADERS += \
     utils.hpp \
     condition/condition.hpp \
     rule/rule.hpp \
-    rule/rule_interface.hpp
+    rule/rule_interface.hpp \
+    condition/logic_condition.hpp \
+    condition/test_condition.hpp
