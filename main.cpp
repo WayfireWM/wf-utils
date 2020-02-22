@@ -124,6 +124,8 @@ test_interface_t::~test_interface_t()
 
 int main()
 {
+    std::string text_reverse = "one two three four five";
+
     auto data = std::make_shared<test_t>();
     data->property_a = 5;
     data->set_property_b(0.5);
@@ -152,6 +154,120 @@ int main()
     {
         rule->apply("created", data_interface);
     }
+
+    lexer.reset(text_reverse);
+
+    auto s = lexer.parse_symbol();
+    auto p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    lexer.reverse();
+    p = lexer.current_symbol_position();
+    std::cout << "reversed to p: " << p << std::endl;
+
+    s = lexer.parse_symbol();
+    p = lexer.current_symbol_position();
+    std::cout << "p: " << p << " s: " << s.to_string() << std::endl;
 
     return 0;
 }

@@ -25,6 +25,8 @@ void lexer_t::reset()
 {
     _parse_position = 0;
     _symbol_position = 0;
+    _reversed = 0;
+    _history.clear();
 }
 
 void lexer_t::reset(const std::string &text)
@@ -36,24 +38,47 @@ void lexer_t::reset(const std::string &text)
 
 symbol_t lexer_t::parse_symbol()
 {
-    if (_parse_position >= _size)
+    if (_reversed)
     {
-        return symbol_t(symbol_t::type_t::END);
-    }
+        auto position = _history.size() - _reversed;
+        auto pair = _history.at(position);
+        auto symbol = std::get<symbol_t>(pair);
 
-    while (std::isspace(_text.at(_parse_position)))
+        --_reversed;
+
+        return symbol;
+    }
+    else
     {
-        ++_parse_position;
+        if (_parse_position >= _size)
+        {
+            return symbol_t(symbol_t::type_t::END);
+        }
+
+        while (std::isspace(_text.at(_parse_position)))
+        {
+            ++_parse_position;
+        }
+
+        _symbol_position = _parse_position;
+        symbol_t symbol = _parse_literal();
+
+        _history.push_back({_symbol_position, symbol});
+
+        return symbol;
     }
-
-    _symbol_position = _parse_position;
-
-    return symbol_t(_parse_literal());
 }
 
 void lexer_t::reverse()
 {
-    _parse_position = _symbol_position;
+    if (_reversed < _history.size())
+    {
+        ++_reversed;
+
+        auto position = _history.size() - _reversed;
+        auto pair = _history.at(position);
+        _symbol_position = std::get<size_t>(pair);
+    }
 }
 
 const std::string &lexer_t::text() const {

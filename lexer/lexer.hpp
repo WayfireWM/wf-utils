@@ -2,9 +2,11 @@
 #define LEXER_HPP
 
 #include <cstddef>
+#include <utility>
 #include <set>
 #include <string>
 #include <string_view>
+#include <vector>
 
 #include "literal.hpp"
 #include "symbol.hpp"
@@ -34,6 +36,9 @@ private:
 
     std::size_t _parse_position;
     std::size_t _symbol_position;
+
+    std::size_t _reversed;
+    std::vector<std::pair<std::size_t, symbol_t>> _history;
 };
 
 #endif // LEXER_HPP
