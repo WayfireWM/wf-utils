@@ -27,10 +27,6 @@ symbol_t::symbol_t(const literal_t &literal) : type(type_t::LITERAL), literal_ty
         {
             type = type_t::SIGNAL;
         }
-        else if (contains(ACTIONS, literal_value))
-        {
-            type = type_t::ACTION;
-        }
         else if (contains(KEYWORDS, literal_value))
         {
             type = type_t::KEYWORD;
@@ -122,9 +118,6 @@ std::string symbol_t::to_string() const
         break;
     case type_t::SIGNAL:
         out.append("Signal: ").append(std::get<std::string>(value));
-        break;
-    case type_t::ACTION:
-        out.append("Action: ").append(std::get<std::string>(value));
         break;
     }
     out.append("]");

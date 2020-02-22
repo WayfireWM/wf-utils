@@ -7,7 +7,6 @@
 
 #include "literal.hpp"
 
-static const std::set<std::string_view> ACTIONS = {"set", "maximize", "minimize"};
 static const std::set<std::string_view> SIGNALS = {"created"};
 static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on"};
 static const std::set<std::string_view> OPERATORS = {"&", "|", "!"};
@@ -25,7 +24,6 @@ public:
         KEYWORD,
         STRUCTURAL,
         SIGNAL,
-        ACTION,
     };
 
     using value_t = literal_t::value_t;

@@ -70,49 +70,41 @@ public:
         return symbol_t::value_t();
     }
 
-    virtual bool set(const std::string &identifier, const symbol_t::value_t &value) override
+    virtual bool execute(const std::string &name, const std::vector<symbol_t::value_t> &args) override
     {
-        auto error = true;
-        if (_test != nullptr)
+        auto error = _test == nullptr;
+        if (!error)
         {
-            if (identifier == "property_a")
+            if ((name == "set") && (args.size() == 2))
             {
-                _test->property_a = std::get<decltype (_test->property_a)>(value);
-                error = false;
+                auto property = std::get<std::string>(args.at(0));
+                if (property == "property_a")
+                {
+                    _test->property_a = std::get<int>(args.at(1));
+                }
+                else if (property == "property_b")
+                {
+                    _test->set_property_b(std::get<double>(args.at(1)));
+                }
+                else
+                {
+                    error = true;
+                }
             }
-            else if (identifier == "property_b")
+            else if (name == "maximize")
             {
-                _test->set_property_b(std::get<decltype (_test->get_property_b())>(value));
+                _test->maximize();
+            }
+            else if (name == "minimize")
+            {
+                _test->minimize();
+            }
+            else
+            {
+                error = true;
             }
         }
-
         return error;
-    }
-
-    virtual bool maximize() override
-    {
-        if (_test != nullptr)
-        {
-            _test->maximize();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    virtual bool minimize() override
-    {
-        if (_test != nullptr)
-        {
-            _test->minimize();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 private:
     std::shared_ptr<test_t> _test;
@@ -134,7 +126,7 @@ int main()
 
     std::set<std::string> text = {
         "on created if moo then set property_b 0.8",
-        "on created if moo then set property_a 8",
+        "on created if moo then set property_b 8.0 else set property_b 4.0",
         "on created if moo then maximize",
         "on created if moo then minimize",
     };
