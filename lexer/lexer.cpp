@@ -1,15 +1,15 @@
 #include "lexer.hpp"
-
-#include <cstddef>
-#include <set>
-#include <sstream>
-#include <string>
-#include <string_view>
-#include <vector>
-
 #include "literal.hpp"
 #include "symbol.hpp"
 #include "utils.hpp"
+#include <ctype.h>
+#include <algorithm>
+#include <cstddef>
+#include <set>
+#include <stdexcept>
+#include <string>
+#include <string_view>
+#include <vector>
 
 lexer_t::lexer_t()
 {

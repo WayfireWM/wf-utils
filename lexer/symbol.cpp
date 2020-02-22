@@ -1,13 +1,11 @@
 #include "symbol.hpp"
-
+#include "utils.hpp"
+#include "variant.hpp"
+#include <ctype.h>
 #include <set>
 #include <stdexcept>
 #include <string>
 #include <string_view>
-
-#include "literal.hpp"
-#include "utils.hpp"
-#include "variant.hpp"
 
 symbol_t::symbol_t() : type(type_t::END), value("")
 {

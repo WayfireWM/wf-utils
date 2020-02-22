@@ -1,11 +1,8 @@
 #include "test_condition.hpp"
-
-#include <string>
-
-#include "condition.hpp"
-#include "variant.hpp"
-
 #include "rule/rule_interface.hpp"
+#include "variant.hpp"
+#include <string>
+#include <variant>
 
 test_condition_t::test_condition_t(const std::string &identifier, const variant_t &value) : _identifier(identifier), _value(value)
 {

@@ -1,12 +1,10 @@
+#include "action/action.hpp"
+#include "condition/condition.hpp"
 #include "rule.hpp"
-
 #include <memory>
 #include <string>
 
-#include "rule_interface.hpp"
-
-#include "action/action.hpp"
-#include "condition/condition.hpp"
+class rule_interface_t;
 
 rule_t::rule_t(const std::string &signal,
                std::shared_ptr<condition_t> condition,

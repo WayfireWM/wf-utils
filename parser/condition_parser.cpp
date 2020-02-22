@@ -1,13 +1,14 @@
 #include "condition_parser.hpp"
-
-#include <iostream>
-#include <memory>
-
 #include "condition/condition.hpp"
 #include "condition/logic_condition.hpp"
 #include "condition/test_condition.hpp"
 #include "lexer/lexer.hpp"
 #include "lexer/symbol.hpp"
+#include "variant.hpp"
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <string>
 
 condition_parser_t::condition_parser_t()
 {

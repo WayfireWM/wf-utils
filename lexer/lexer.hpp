@@ -1,16 +1,14 @@
 #ifndef LEXER_HPP
 #define LEXER_HPP
 
+#include "symbol.hpp"
+#include "variant.hpp"
 #include <cstddef>
-#include <utility>
 #include <set>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
-
-#include "literal.hpp"
-#include "symbol.hpp"
-#include "variant.hpp"
 
 static const std::set<std::string_view> DELIMITERS = {" ", "\'", "\""};
 

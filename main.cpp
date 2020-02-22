@@ -1,17 +1,13 @@
-#include <array>
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <streambuf>
-#include <string>
-
-#include "utils.hpp"
-
 #include "lexer/lexer.hpp"
-#include "parser/condition_parser.hpp"
 #include "parser/rule_parser.hpp"
 #include "rule/rule.hpp"
 #include "rule/rule_interface.hpp"
+#include "variant.hpp"
+#include <algorithm>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 
 class test_t
 {

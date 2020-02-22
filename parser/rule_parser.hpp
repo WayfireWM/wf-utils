@@ -4,8 +4,8 @@
 #include <memory>
 #include <string>
 
-#include "lexer/lexer.hpp"
-#include "rule/rule.hpp"
+class lexer_t;
+class rule_t;
 
 class rule_parser_t {
 public:

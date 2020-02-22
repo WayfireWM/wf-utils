@@ -1,11 +1,10 @@
 #ifndef SYMBOL_HPP
 #define SYMBOL_HPP
 
+#include "variant.hpp"
 #include <set>
 #include <string>
 #include <string_view>
-
-#include "variant.hpp"
 
 static const std::set<std::string_view> SIGNALS = {"created"};
 static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on"};

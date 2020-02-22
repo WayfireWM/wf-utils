@@ -1,19 +1,17 @@
 #include "rule_parser.hpp"
-
+#include "action_parser.hpp"
+#include "condition_parser.hpp"
+#include "lexer/lexer.hpp"
+#include "lexer/symbol.hpp"
+#include "rule/rule.hpp"
+#include "variant.hpp"
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
-#include <variant>
 
-#include "action_parser.hpp"
-#include "condition_parser.hpp"
-
-#include "action/action.hpp"
-#include "condition/condition.hpp"
-#include "lexer/lexer.hpp"
-#include "lexer/symbol.hpp"
-#include "rule/rule.hpp"
+class action_t;
+class condition_t;
 
 std::shared_ptr<rule_t> rule_parser_t::parse(const std::string &text)
 {

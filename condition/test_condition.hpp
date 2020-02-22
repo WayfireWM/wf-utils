@@ -1,12 +1,11 @@
 #ifndef TEST_CONDITION_HPP
 #define TEST_CONDITION_HPP
 
-#include <string>
-
 #include "condition.hpp"
 #include "variant.hpp"
+#include <string>
 
-#include "rule/rule_interface.hpp"
+class rule_interface_t;
 
 class test_condition_t : public condition_t
 {

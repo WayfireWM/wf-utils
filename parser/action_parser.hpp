@@ -3,9 +3,8 @@
 
 #include <memory>
 
-#include "action/action.hpp"
-
-#include "lexer/lexer.hpp"
+class action_t;
+class lexer_t;
 
 class action_parser_t {
 public:

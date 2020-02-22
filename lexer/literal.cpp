@@ -1,9 +1,8 @@
 #include "literal.hpp"
-
+#include "variant.hpp"
+#include <ctype.h>
 #include <stdexcept>
 #include <string>
-
-#include "variant.hpp"
 
 variant_t parse_literal(const std::string &s)
 {

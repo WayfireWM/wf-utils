@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "rule/rule_interface.hpp"
+class rule_interface_t;
 
 class condition_t
 {

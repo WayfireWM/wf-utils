@@ -1,10 +1,8 @@
+#include "condition.hpp"
 #include "logic_condition.hpp"
-
 #include <memory>
 
-#include "condition.hpp"
-
-#include "rule/rule_interface.hpp"
+class rule_interface_t;
 
 or_condition_t::or_condition_t() : condition_t()
 {

@@ -1,11 +1,11 @@
 #ifndef LOGIC_CONDITION_HPP
 #define LOGIC_CONDITION_HPP
 
-#include <memory>
-
 #include "condition.hpp"
+#include <memory>
+#include <string>
 
-#include "rule/rule_interface.hpp"
+class rule_interface_t;
 
 class or_condition_t : public condition_t
 {

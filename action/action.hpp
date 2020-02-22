@@ -1,12 +1,11 @@
 #ifndef ACTION_HPP
 #define ACTION_HPP
 
+#include "variant.hpp"
 #include <string>
 #include <vector>
 
-#include "variant.hpp"
-
-#include "rule/rule_interface.hpp"
+class rule_interface_t;
 
 class action_t
 {

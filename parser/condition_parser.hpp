@@ -1,11 +1,11 @@
 #ifndef CONDITION_PARSER_HPP
 #define CONDITION_PARSER_HPP
 
+#include "lexer/symbol.hpp"
 #include <memory>
 
-#include "condition/condition.hpp"
-#include "lexer/lexer.hpp"
-#include "lexer/symbol.hpp"
+class condition_t;
+class lexer_t;
 
 class condition_parser_t {
 public:

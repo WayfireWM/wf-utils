@@ -1,5 +1,4 @@
 #include "variant.hpp"
-
 #include <string>
 #include <variant>
 

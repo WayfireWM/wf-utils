@@ -1,13 +1,11 @@
 #include "action_parser.hpp"
-
-#include <memory>
-#include <stdexcept>
-#include <string>
-
 #include "action/action.hpp"
 #include "lexer/lexer.hpp"
 #include "lexer/symbol.hpp"
 #include "variant.hpp"
+#include <memory>
+#include <stdexcept>
+#include <vector>
 
 std::shared_ptr<action_t> action_parser_t::parse(lexer_t &lexer)
 {

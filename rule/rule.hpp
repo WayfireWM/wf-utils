@@ -4,10 +4,9 @@
 #include <memory>
 #include <string>
 
-#include "rule_interface.hpp"
-
-#include "action/action.hpp"
-#include "condition/condition.hpp"
+class action_t;
+class condition_t;
+class rule_interface_t;
 
 /**
  * @brief The rule_t class
