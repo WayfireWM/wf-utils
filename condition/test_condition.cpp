@@ -41,18 +41,6 @@ std::string equals_condition_t::to_string() const
 {
     std::string out = _identifier;
     out.append(" equals ");
-    if (std::holds_alternative<int>(_value))
-    {
-        out.append(std::to_string(get_int(_value)));
-    }
-    else if (std::holds_alternative<std::string>(_value))
-    {
-        out.append(get_string(_value));
-    }
-    else
-    {
-        out.append("*VALUE*");
-    }
-    // TODO: Complete me.
+    out.append(::to_string(_value));
     return out;
 }

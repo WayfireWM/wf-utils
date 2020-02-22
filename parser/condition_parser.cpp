@@ -61,12 +61,24 @@ void condition_parser_t::_factor(lexer_t &lexer)
 
         // Keyword.
         _symbol = lexer.parse_symbol();
-        // TODO: Validate.
+        if (_symbol.type != symbol_t::type_t::KEYWORD)
+        {
+            throw std::runtime_error("Condition parser error. Expected keyword.");
+        }
         auto keyword = get_string(_symbol.value);
+        if ((keyword != "equals") && (keyword != "contains"))
+        {
+            std::string error = "Condition parser error. Unsupported keyword. keyword: ";
+            error.append(keyword);
+            throw std::runtime_error(error);
+        }
 
         // Value.
         _symbol = lexer.parse_symbol();
-        // TODO: Validate.
+        if (_symbol.type != symbol_t::type_t::LITERAL)
+        {
+            throw std::runtime_error("Condition parser error. Expected literal.");
+        }
 
         // Create condition.
         if (keyword == "equals")
