@@ -32,4 +32,15 @@ public:
     virtual std::string to_string() const override;
 };
 
+class contains_condition_t : public test_condition_t
+{
+public:
+    contains_condition_t(const std::string &identifier, const variant_t &value);
+    virtual ~contains_condition_t() override;
+
+    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+
+    virtual std::string to_string() const override;
+};
+
 #endif // TEST_CONDITION_HPP

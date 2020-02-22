@@ -85,6 +85,10 @@ void condition_parser_t::_factor(lexer_t &lexer)
         {
             _root = std::make_shared<equals_condition_t>(identifier, _symbol.value);
         }
+        if (keyword == "contains")
+        {
+            _root = std::make_shared<contains_condition_t>(identifier, _symbol.value);
+        }
 
         _symbol = lexer.parse_symbol();
     }
