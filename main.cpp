@@ -149,6 +149,8 @@ int main()
     std::vector<std::string> text = {
         "on created if property_a equals 4 then set property_b 0.4",
         "on created if (property_a equals 4) | (property_a equals 8) then maximize else minimize",
+        "on created then minimize",
+        "on created then maximize else minimize"
     };
 
     lexer_t lexer;

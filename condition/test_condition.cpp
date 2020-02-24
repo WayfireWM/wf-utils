@@ -12,6 +12,31 @@ test_condition_t::~test_condition_t()
 {
 }
 
+true_condition_t::true_condition_t() : test_condition_t("", 0)
+{
+}
+
+true_condition_t::~true_condition_t()
+{
+}
+
+bool true_condition_t::evaluate(rule_interface_t &interface, bool &error)
+{
+    static_cast<void>(interface);
+
+    if (error)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+std::string true_condition_t::to_string() const
+{
+    return "true";
+}
+
 equals_condition_t::equals_condition_t(const std::string &identifier, const variant_t &value) : test_condition_t(identifier, value)
 {
 }

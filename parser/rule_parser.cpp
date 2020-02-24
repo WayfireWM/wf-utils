@@ -4,6 +4,7 @@
 #include "lexer/lexer.hpp"
 #include "lexer/symbol.hpp"
 #include "rule/rule.hpp"
+#include "condition/test_condition.hpp"
 #include "variant.hpp"
 #include <iostream>
 #include <memory>
@@ -43,21 +44,32 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
         }
         signal = get_string(symbol.value);
 
-        // Expect the 'if' keyword next.
+        // Expect the 'if' or 'then' keyword next.
         symbol = lexer.parse_symbol();
-        if ((symbol.type != symbol_t::type_t::KEYWORD) || (get_string(symbol.value) != "if"))
+        if ((symbol.type != symbol_t::type_t::KEYWORD) || ((get_string(symbol.value) != "if") && (get_string(symbol.value) != "then")))
         {
-            throw std::runtime_error("Rule parser error. Expected 'if' keyword.");
+            throw std::runtime_error("Rule parser error. Expected 'if' or 'then' keyword.");
         }
 
-        // Delegate to logical condition parser.
-        condition = condition_parser_t().parse(lexer);
-
-        // Expect the next symbol to be the 'then' keyword.
-        symbol = lexer.parse_symbol();
-        if ((symbol.type != symbol_t::type_t::KEYWORD) || (get_string(symbol.value) != "then"))
+        // Check if keyword was if -> condition parser or else -> true condition and no else allowed.
+        auto else_allowed = true;
+        auto keyword = get_string(symbol.value);
+        if (keyword == "if")
         {
-            throw std::runtime_error("Rule parser error. Expected 'then' keyword.");
+            // Delegate to logical condition parser.
+            condition = condition_parser_t().parse(lexer);
+
+            // Expect the next symbol to be the 'then' keyword.
+            symbol = lexer.parse_symbol();
+            if ((symbol.type != symbol_t::type_t::KEYWORD) || (get_string(symbol.value) != "then"))
+            {
+                throw std::runtime_error("Rule parser error. Expected 'then' keyword.");
+            }
+        }
+        else
+        {
+            condition = std::make_shared<true_condition_t>();
+            else_allowed = false;
         }
 
         // Delegate to action parser.
@@ -70,6 +82,13 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
             if (get_string(symbol.value) != "else")
             {
                 throw std::runtime_error("Rule parser error. Expected 'else' keyword.");
+            }
+            else
+            {
+                if (!else_allowed)
+                {
+                    throw std::runtime_error("Rule parser error. Else action is not allowed if no condition set.");
+                }
             }
 
             // Delegate to action parser.

@@ -21,6 +21,17 @@ protected:
     variant_t _value;
 };
 
+class true_condition_t : public test_condition_t
+{
+public:
+    true_condition_t();
+    virtual ~true_condition_t() override;
+
+    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+
+    virtual std::string to_string() const override;
+};
+
 class equals_condition_t : public test_condition_t
 {
 public:
