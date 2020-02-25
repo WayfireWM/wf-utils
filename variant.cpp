@@ -2,6 +2,9 @@
 #include <string>
 #include <variant>
 
+namespace wf
+{
+
 bool is_int(const variant_t &v)
 {
     return std::holds_alternative<int>(v);
@@ -123,3 +126,5 @@ std::string to_string(const variant_t &v)
     out.append("]");
     return out;
 }
+
+} // End namespace wf.

@@ -10,6 +10,9 @@
 #include <stdexcept>
 #include <string>
 
+namespace wf
+{
+
 condition_parser_t::condition_parser_t()
 {
 }
@@ -108,3 +111,5 @@ void condition_parser_t::_factor(lexer_t &lexer)
         throw std::runtime_error("Condition parser error. Unexpected symbol.");
     }
 }
+
+} // End namespace wf.

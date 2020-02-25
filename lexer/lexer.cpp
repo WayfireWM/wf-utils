@@ -11,6 +11,9 @@
 #include <string_view>
 #include <vector>
 
+namespace wf
+{
+
 lexer_t::lexer_t()
 {
     reset("");
@@ -186,3 +189,5 @@ variant_t lexer_t::_parse_comment_literal()
     _parse_position = _size;
     return parse_literal(literal_text);
 }
+
+} // End namespace wf.

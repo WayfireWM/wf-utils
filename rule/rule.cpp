@@ -4,6 +4,9 @@
 #include <memory>
 #include <string>
 
+namespace wf
+{
+
 class rule_interface_t;
 
 rule_t::rule_t(const std::string &signal,
@@ -46,3 +49,5 @@ bool rule_t::apply(const std::string &signal, rule_interface_t &interface)
 
     return error;
 }
+
+} // End namespace wf.

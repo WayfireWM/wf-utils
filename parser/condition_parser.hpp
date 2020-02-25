@@ -4,6 +4,9 @@
 #include "lexer/symbol.hpp"
 #include <memory>
 
+namespace wf
+{
+
 class condition_t;
 class lexer_t;
 
@@ -19,5 +22,7 @@ private:
     std::shared_ptr<condition_t> _root;
     symbol_t _symbol;
 };
+
+} // End namespace wf.
 
 #endif // CONDITION_PARSER_HPP

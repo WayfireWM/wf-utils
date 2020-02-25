@@ -7,6 +7,9 @@
 #include <stdexcept>
 #include <vector>
 
+namespace wf
+{
+
 std::shared_ptr<action_t> action_parser_t::parse(lexer_t &lexer)
 {
     auto symbol = lexer.parse_symbol();
@@ -37,3 +40,5 @@ std::shared_ptr<action_t> action_parser_t::parse(lexer_t &lexer)
 
     return std::make_shared<action_t>(name, args);
 }
+
+} // End namespace wf.

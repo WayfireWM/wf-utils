@@ -39,7 +39,7 @@ private:
     double _property_b;
 };
 
-class test_interface_t : public rule_interface_t
+class test_interface_t : public wf::rule_interface_t
 {
 public:
     test_interface_t(std::shared_ptr<test_t> test) : _test(test)
@@ -48,7 +48,7 @@ public:
 
     virtual ~test_interface_t() override;
 
-    virtual variant_t get(const std::string &identifier, bool &error) override
+    virtual wf::variant_t get(const std::string &identifier, bool &error) override
     {
         error = false;
         if (_test != nullptr)
@@ -64,24 +64,24 @@ public:
         }
 
         error = true;
-        return variant_t("");
+        return wf::variant_t("");
     }
 
-    virtual bool execute(const std::string &name, const std::vector<variant_t> &args) override
+    virtual bool execute(const std::string &name, const std::vector<wf::variant_t> &args) override
     {
         auto error = _test == nullptr;
         if (!error)
         {
             if ((name == "set") && (args.size() == 2))
             {
-                auto property = get_string(args.at(0));
+                auto property = wf::get_string(args.at(0));
                 if (property == "property_a")
                 {
-                    _test->property_a = get_int(args.at(1));
+                    _test->property_a = wf::get_int(args.at(1));
                 }
                 else if (property == "property_b")
                 {
-                    _test->set_property_b(get_double(args.at(1)));
+                    _test->set_property_b(wf::get_double(args.at(1)));
                 }
                 else
                 {
@@ -153,10 +153,10 @@ int main()
         "on created then maximize else minimize"
     };
 
-    lexer_t lexer;
-    rule_parser_t rule_parser;
+    wf::lexer_t lexer;
+    wf::rule_parser_t rule_parser;
 
-    std::vector<std::shared_ptr<rule_t>> rules;
+    std::vector<std::shared_ptr<wf::rule_t>> rules;
 
     for (const auto &t : text)
     {

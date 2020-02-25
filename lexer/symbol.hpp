@@ -6,6 +6,9 @@
 #include <string>
 #include <string_view>
 
+namespace wf
+{
+
 static const std::set<std::string_view> SIGNALS = {"created"};
 static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on"};
 static const std::set<std::string_view> OPERATORS = {"&", "|", "!"};
@@ -34,5 +37,7 @@ public:
 };
 
 std::string to_string(const symbol_t &s);
+
+} // End namespace wf.
 
 #endif // SYMBOL_HPP

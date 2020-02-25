@@ -10,6 +10,9 @@
 #include <utility>
 #include <vector>
 
+namespace wf
+{
+
 static const std::set<std::string_view> DELIMITERS = {" ", "\'", "\""};
 
 class lexer_t
@@ -39,5 +42,7 @@ private:
     std::size_t _reversed;
     std::vector<std::pair<std::size_t, symbol_t>> _history;
 };
+
+} // End namespace wf.
 
 #endif // LEXER_HPP

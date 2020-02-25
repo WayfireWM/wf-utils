@@ -11,6 +11,9 @@
 #include <stdexcept>
 #include <string>
 
+namespace wf
+{
+
 class action_t;
 class condition_t;
 
@@ -122,3 +125,5 @@ std::shared_ptr<rule_t> rule_parser_t::parse(lexer_t &lexer)
 
     return std::make_shared<rule_t>(signal, condition, if_action, else_action);
 }
+
+} // End namespace wf.

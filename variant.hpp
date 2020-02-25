@@ -4,6 +4,9 @@
 #include <string>
 #include <variant>
 
+namespace wf
+{
+
 using variant_t = std::variant<int, char, bool, float, double, std::string>;
 
 enum class variant_type_t
@@ -33,5 +36,7 @@ double get_double(const variant_t &v);
 std::string get_string(const variant_t &v);
 
 std::string to_string(const variant_t &v);
+
+} // End namespace wf.
 
 #endif // VARIANT_HPP

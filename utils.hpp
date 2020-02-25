@@ -5,6 +5,9 @@
 #include <iterator>
 #include <string>
 
+namespace wf
+{
+
 template <typename T_CONTAINER, typename T_ITEM>
 bool contains(const T_CONTAINER &container, const T_ITEM &item)
 {
@@ -30,5 +33,7 @@ inline void trim(std::string &s)
     ltrim(s);
     rtrim(s);
 }
+
+} // End namespace wf.
 
 #endif // UTILS_HPP

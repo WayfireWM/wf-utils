@@ -4,6 +4,9 @@
 #include <string>
 #include <variant>
 
+namespace wf
+{
+
 test_condition_t::test_condition_t(const std::string &identifier, const variant_t &value) : _identifier(identifier), _value(value)
 {
 }
@@ -12,7 +15,7 @@ test_condition_t::~test_condition_t()
 {
 }
 
-true_condition_t::true_condition_t() : test_condition_t("", 0)
+true_condition_t::true_condition_t() : condition_t()
 {
 }
 
@@ -66,7 +69,7 @@ std::string equals_condition_t::to_string() const
 {
     std::string out = _identifier;
     out.append(" equals ");
-    out.append(::to_string(_value));
+    out.append(wf::to_string(_value));
     return out;
 }
 
@@ -106,6 +109,8 @@ std::string contains_condition_t::to_string() const
 {
     std::string out = _identifier;
     out.append(" contains ");
-    out.append(::to_string(_value));
+    out.append(wf::to_string(_value));
     return out;
 }
+
+} // End namespace wf.

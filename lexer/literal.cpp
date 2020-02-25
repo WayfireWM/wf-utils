@@ -4,6 +4,9 @@
 #include <stdexcept>
 #include <string>
 
+namespace wf
+{
+
 variant_t parse_literal(const std::string &s)
 {
     // Deal with char literal
@@ -159,3 +162,5 @@ variant_t parse_literal(const std::string &s)
     // If we get here, the text is a string.
     return variant_t(s);
 }
+
+} // End namespace wf.

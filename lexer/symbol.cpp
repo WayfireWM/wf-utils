@@ -7,6 +7,9 @@
 #include <string>
 #include <string_view>
 
+namespace wf
+{
+
 symbol_t::symbol_t() : type(type_t::END), value("")
 {
 }
@@ -106,3 +109,5 @@ std::string to_string(const symbol_t &s)
     out.append("]");
     return out;
 }
+
+} // End namespace wf.

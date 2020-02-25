@@ -2,6 +2,9 @@
 #include "logic_condition.hpp"
 #include <memory>
 
+namespace wf
+{
+
 class rule_interface_t;
 
 or_condition_t::or_condition_t() : condition_t()
@@ -123,3 +126,5 @@ std::string not_condition_t::to_string() const
     out.append(")");
     return out;
 }
+
+} // End namespace wf.

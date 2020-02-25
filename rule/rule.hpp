@@ -4,6 +4,9 @@
 #include <memory>
 #include <string>
 
+namespace wf
+{
+
 class action_t;
 class condition_t;
 class rule_interface_t;
@@ -41,5 +44,7 @@ private:
     std::shared_ptr<action_t> _if_action;
     std::shared_ptr<action_t> _else_action;
 };
+
+} // End namespace wf.
 
 #endif // RULE_HPP
