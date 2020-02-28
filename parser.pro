@@ -34,3 +34,6 @@ HEADERS += \
     condition/logic_condition.hpp \
     condition/test_condition.hpp \
     variant.hpp
+
+DISTFILES += \
+    meson.build
