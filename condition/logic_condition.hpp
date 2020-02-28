@@ -23,18 +23,14 @@ public:
     or_condition_t();
 
     /**
-     * @copydoc wf::~condition_t()
+     * @brief ~or_condition_t Destructor.
      */
     virtual ~or_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override;
 
     /**
@@ -61,18 +57,14 @@ public:
     and_condition_t();
 
     /**
-     * @copydoc wf::~condition_t()
+     * @brief ~and_condition_t Destructor.
      */
     virtual ~and_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override;
 
     /**
@@ -98,18 +90,14 @@ public:
     not_condition_t();
 
     /**
-     * @copydoc wf::~condition_t()
+     * @brief ~not_condition_t Destructor.
      */
     virtual ~not_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override;
 
     /**

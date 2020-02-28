@@ -26,18 +26,14 @@ public:
     test_condition_t(const std::string &identifier, const variant_t &value);
 
     /**
-     * @copydoc wf::~condition_t()
+     * @brief ~test_condition_t Destructor.
      */
     virtual ~test_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override = 0;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override = 0;
 protected:
     /**
@@ -59,23 +55,14 @@ class true_condition_t : public condition_t
 {
 public:
     /**
-     * @copydoc wf::condition_t()
-     */
-    true_condition_t();
-
-    /**
-     * @copydoc wf::~condition_t()
+     * @brief ~true_condition_t Destructor.
      */
     virtual ~true_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override;
 };
 
@@ -85,24 +72,18 @@ public:
 class equals_condition_t : public test_condition_t
 {
 public:
-    /**
-     * @copydoc wf::test_condition_t()
-     */
+    // Inherits docs.
     equals_condition_t(const std::string &identifier, const variant_t &value);
 
     /**
-     * @copydoc wf::~condition_t()
+     * @brief ~equals_condition_t Destructor.
      */
     virtual ~equals_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override;
 };
 
@@ -114,24 +95,18 @@ public:
 class contains_condition_t : public test_condition_t
 {
 public:
-    /**
-     * @copydoc wf::test_condition_t()
-     */
+    // Inherits docs.
     contains_condition_t(const std::string &identifier, const variant_t &value);
 
     /**
-     * @copydoc wf::~condition_t()
+     * @brief ~contains_condition_t Destructor.
      */
     virtual ~contains_condition_t() override;
 
-    /**
-     * @copydoc wf::evaluate()
-     */
+    // Inherits docs.
     virtual bool evaluate(rule_interface_t &interface, bool &error) override;
 
-    /**
-     * @copydoc wf::to_string()
-     */
+    // Inherits docs.
     virtual std::string to_string() const override;
 };
 

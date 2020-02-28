@@ -15,10 +15,6 @@ test_condition_t::~test_condition_t()
 {
 }
 
-true_condition_t::true_condition_t() : condition_t()
-{
-}
-
 true_condition_t::~true_condition_t()
 {
 }

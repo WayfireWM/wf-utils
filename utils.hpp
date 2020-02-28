@@ -11,8 +11,8 @@ namespace wf
 /**
  * @brief contains Utility method to see if an element is contained in the given container.
  *
- * @param T_CONTAINER The template type name of the container to check for the item.
- * @param T_ITEM The type of the item to check.
+ * @tparam T_CONTAINER The template type name of the container to check for the item.
+ * @tparam T_ITEM The type of the item to check.
  * @param[in] container The container to check.
  * @param[in] item The item to find in the container.
  *

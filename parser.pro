@@ -36,4 +36,6 @@ HEADERS += \
     variant.hpp
 
 DISTFILES += \
-    meson.build
+    meson.build \
+    README.md \
+    Doxyfile.in
