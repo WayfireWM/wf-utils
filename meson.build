@@ -1,5 +1,5 @@
 project(
-        'wf-util',
+        'wf-utils',
         'cpp',
         version: '0.3',
         license: 'MIT',
