@@ -12,18 +12,21 @@ class condition_t;
 class rule_interface_t;
 
 /**
- * @brief The rule_t class
+ * @brief The rule_t class is a rule (combination of condition and actions) that can be executed against a
+ *        rule_interface_t instance.
  */
 class rule_t
 {
 public:
     /**
-     * @brief rule_t
+     * @brief rule_t Constructor. Creates a new rule_t.
      *
-     * @param signal
-     * @param condition
-     * @param if_action
-     * @param else_action
+     * The else_action argument may be nullptr in case the user wants a rule with only an if action.
+     *
+     * @param[in] signal The signal which should trigger the evaluation of the rule_t instance.
+     * @param[in] condition The condition to be tested when triggered.
+     * @param[in] if_action The action to execute in case the condition check returns <code>true</code>.
+     * @param[in] else_action The action to execute in case the confition check returns <code>false</code>.
      */
     rule_t(const std::string &signal,
            std::shared_ptr<condition_t> condition,
@@ -31,17 +34,39 @@ public:
            std::shared_ptr<action_t> else_action);
 
     /**
-     * @brief apply
+     * @brief apply Applies the rule to the given trigger signal. The interface rule_interface_t is used to
+     *              obtain data and execute actions.
      *
-     * @param signal
+     * The rule will not do anything if the signal does not match the value of _signal. It is implemented this
+     * way to allow a set of rules to be 'applied' on all signals, and only have the relevant rules execute.
+     * Think of this as a built in signal filter.
+     *
+     * @param[in] signal The signal to apply the rule to.
+     * @param[in] interface The rule_interface_t instance to use for the rule application.
      *
      * @return <code>True</code> if there was an error, <code>false</code> if not.
      */
     bool apply(const std::string &signal, rule_interface_t &interface);
+
 private:
+    /**
+     * @brief _signal The signal that should trigger the application of this rule.
+     */
     std::string _signal;
+
+    /**
+     * @brief _condition The condition to check to decide which action to execute.
+     */
     std::shared_ptr<condition_t> _condition;
+
+    /**
+     * @brief _if_action The action to execute if the condition holds.
+     */
     std::shared_ptr<action_t> _if_action;
+
+    /**
+     * @brief _else_action The action to execute if the condition does not hold.
+     */
     std::shared_ptr<action_t> _else_action;
 };
 
