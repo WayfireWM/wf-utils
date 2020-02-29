@@ -37,5 +37,6 @@ HEADERS += \
 
 DISTFILES += \
     meson.build \
+    Makefile \
     README.md \
     Doxyfile.in

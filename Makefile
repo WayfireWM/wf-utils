@@ -1,7 +1,7 @@
 # Copyright © 2020 Erik Van Hamme
 
 # Project name.
-PROJECT := ruleparser
+PROJECT := wf-utils
 
 # List of source files.
 SOURCES := \
