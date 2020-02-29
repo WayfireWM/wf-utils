@@ -1,5 +1,5 @@
-#include "action.hpp"
-#include "rule/rule_interface.hpp"
+#include "wayfire/action/action.hpp"
+#include "wayfire/rule/rule_interface.hpp"
 
 namespace wf
 {

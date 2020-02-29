@@ -1,4 +1,4 @@
-#include "rule_interface.hpp"
+#include "wayfire/rule/rule_interface.hpp"
 
 namespace wf
 {

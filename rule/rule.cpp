@@ -1,6 +1,6 @@
-#include "action/action.hpp"
-#include "condition/condition.hpp"
-#include "rule.hpp"
+#include "wayfire/action/action.hpp"
+#include "wayfire/condition/condition.hpp"
+#include "wayfire/rule/rule.hpp"
 #include <memory>
 #include <string>
 

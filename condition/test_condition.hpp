@@ -1,8 +1,8 @@
 #ifndef TEST_CONDITION_HPP
 #define TEST_CONDITION_HPP
 
-#include "condition.hpp"
-#include "variant.hpp"
+#include "wayfire/condition/condition.hpp"
+#include "wayfire/variant.hpp"
 #include <string>
 
 namespace wf

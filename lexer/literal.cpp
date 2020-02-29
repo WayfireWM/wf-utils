@@ -1,5 +1,5 @@
-#include "literal.hpp"
-#include "variant.hpp"
+#include "wayfire/lexer/literal.hpp"
+#include "wayfire/variant.hpp"
 #include <ctype.h>
 #include <stdexcept>
 #include <string>

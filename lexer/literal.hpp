@@ -1,7 +1,7 @@
 #ifndef LITERAL_HPP
 #define LITERAL_HPP
 
-#include "variant.hpp"
+#include "wayfire/variant.hpp"
 #include <string>
 
 namespace wf

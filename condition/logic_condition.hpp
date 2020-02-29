@@ -1,7 +1,7 @@
 #ifndef LOGIC_CONDITION_HPP
 #define LOGIC_CONDITION_HPP
 
-#include "condition.hpp"
+#include "wayfire/condition/condition.hpp"
 #include <memory>
 #include <string>
 

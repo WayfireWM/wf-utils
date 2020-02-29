@@ -1,10 +1,10 @@
-#include "condition_parser.hpp"
-#include "condition/condition.hpp"
-#include "condition/logic_condition.hpp"
-#include "condition/test_condition.hpp"
-#include "lexer/lexer.hpp"
-#include "lexer/symbol.hpp"
-#include "variant.hpp"
+#include "wayfire/condition/condition.hpp"
+#include "wayfire/condition/logic_condition.hpp"
+#include "wayfire/condition/test_condition.hpp"
+#include "wayfire/lexer/lexer.hpp"
+#include "wayfire/lexer/symbol.hpp"
+#include "wayfire/parser/condition_parser.hpp"
+#include "wayfire/variant.hpp"
 #include <iostream>
 #include <memory>
 #include <stdexcept>

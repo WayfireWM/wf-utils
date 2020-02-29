@@ -1,7 +1,7 @@
 #ifndef CONDITION_PARSER_HPP
 #define CONDITION_PARSER_HPP
 
-#include "lexer/symbol.hpp"
+#include "wayfire/lexer/symbol.hpp"
 #include <memory>
 
 namespace wf

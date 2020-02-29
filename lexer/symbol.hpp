@@ -1,7 +1,7 @@
 #ifndef SYMBOL_HPP
 #define SYMBOL_HPP
 
-#include "variant.hpp"
+#include "wayfire/variant.hpp"
 #include <set>
 #include <string>
 #include <string_view>

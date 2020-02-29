@@ -1,8 +1,8 @@
 #ifndef LEXER_HPP
 #define LEXER_HPP
 
-#include "symbol.hpp"
-#include "variant.hpp"
+#include "wayfire/lexer/symbol.hpp"
+#include "wayfire/variant.hpp"
 #include <cstddef>
 #include <set>
 #include <string>

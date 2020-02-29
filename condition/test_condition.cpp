@@ -1,6 +1,6 @@
-#include "test_condition.hpp"
-#include "rule/rule_interface.hpp"
-#include "variant.hpp"
+#include "wayfire/condition/test_condition.hpp"
+#include "wayfire/rule/rule_interface.hpp"
+#include "wayfire/variant.hpp"
 #include <string>
 #include <variant>
 

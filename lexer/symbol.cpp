@@ -1,6 +1,6 @@
-#include "symbol.hpp"
-#include "utils.hpp"
-#include "variant.hpp"
+#include "wayfire/lexer/symbol.hpp"
+#include "wayfire/utils.hpp"
+#include "wayfire/variant.hpp"
 #include <ctype.h>
 #include <set>
 #include <stdexcept>

@@ -1,7 +1,7 @@
-#include "lexer.hpp"
-#include "literal.hpp"
-#include "symbol.hpp"
-#include "utils.hpp"
+#include "wayfire/lexer/lexer.hpp"
+#include "wayfire/lexer/literal.hpp"
+#include "wayfire/lexer/symbol.hpp"
+#include "wayfire/utils.hpp"
 #include <ctype.h>
 #include <algorithm>
 #include <cstddef>

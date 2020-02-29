@@ -1,4 +1,4 @@
-#include "variant.hpp"
+#include "wayfire/variant.hpp"
 #include <string>
 #include <variant>
 

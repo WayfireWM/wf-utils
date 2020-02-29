@@ -1,4 +1,4 @@
-#include "condition.hpp"
+#include "wayfire/condition/condition.hpp"
 
 namespace wf
 {

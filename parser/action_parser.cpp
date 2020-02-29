@@ -1,8 +1,8 @@
-#include "action_parser.hpp"
-#include "action/action.hpp"
-#include "lexer/lexer.hpp"
-#include "lexer/symbol.hpp"
-#include "variant.hpp"
+#include "wayfire/action/action.hpp"
+#include "wayfire/lexer/lexer.hpp"
+#include "wayfire/lexer/symbol.hpp"
+#include "wayfire/parser/action_parser.hpp"
+#include "wayfire/variant.hpp"
 #include <memory>
 #include <stdexcept>
 #include <vector>

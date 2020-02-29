@@ -1,5 +1,5 @@
-#include "condition.hpp"
-#include "logic_condition.hpp"
+#include "wayfire/condition/condition.hpp"
+#include "wayfire/condition/logic_condition.hpp"
 #include <memory>
 
 namespace wf

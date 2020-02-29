@@ -1,7 +1,7 @@
 #ifndef RULE_INTERFACE_HPP
 #define RULE_INTERFACE_HPP
 
-#include "variant.hpp"
+#include "wayfire/variant.hpp"
 #include <string>
 #include <vector>
 
