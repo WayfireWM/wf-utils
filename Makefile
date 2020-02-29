@@ -5,20 +5,20 @@ PROJECT := ruleparser
 
 # List of source files.
 SOURCES := \
-	action/action.cpp \
-	condition/condition.cpp \
-	condition/logic_condition.cpp \
-	condition/test_condition.cpp \
-	lexer/lexer.cpp \
-	lexer/literal.cpp \
-	lexer/symbol.cpp \
+	wayfire/action/action.cpp \
+	wayfire/condition/condition.cpp \
+	wayfire/condition/logic_condition.cpp \
+	wayfire/condition/test_condition.cpp \
+	wayfire/lexer/lexer.cpp \
+	wayfire/lexer/literal.cpp \
+	wayfire/lexer/symbol.cpp \
+	wayfire/parser/action_parser.cpp \
+	wayfire/parser/condition_parser.cpp \
+	wayfire/parser/rule_parser.cpp \
+	wayfire/rule/rule.cpp \
+	wayfire/rule/rule_interface.cpp \
+	wayfire/variant.cpp \
 	main.cpp \
-	parser/action_parser.cpp \
-	parser/condition_parser.cpp \
-	parser/rule_parser.cpp \
-	rule/rule.cpp \
-	rule/rule_interface.cpp \
-	variant.cpp \
 
 # List of system source files.
 SYSTEMSOURCES := \

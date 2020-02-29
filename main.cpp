@@ -1,8 +1,8 @@
-#include "lexer/lexer.hpp"
-#include "parser/rule_parser.hpp"
-#include "rule/rule.hpp"
-#include "rule/rule_interface.hpp"
-#include "variant.hpp"
+#include "wayfire/lexer/lexer.hpp"
+#include "wayfire/parser/rule_parser.hpp"
+#include "wayfire/rule/rule.hpp"
+#include "wayfire/rule/rule_interface.hpp"
+#include "wayfire/variant.hpp"
 #include <algorithm>
 #include <iostream>
 #include <memory>

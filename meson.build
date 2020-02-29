@@ -14,19 +14,19 @@ project(
 add_project_arguments(['-Wno-deprecated-declarations'], language: ['cpp'])
 
 sources = [
-'action/action.cpp',
-'condition/condition.cpp',
-'condition/logic_condition.cpp',
-'condition/test_condition.cpp',
-'lexer/lexer.cpp',
-'lexer/literal.cpp',
-'lexer/symbol.cpp',
-'parser/action_parser.cpp',
-'parser/condition_parser.cpp',
-'parser/rule_parser.cpp',
-'rule/rule.cpp',
-'rule/rule_interface.cpp',
-'variant.cpp',
+'wayfire/action/action.cpp',
+'wayfire/condition/condition.cpp',
+'wayfire/condition/logic_condition.cpp',
+'wayfire/condition/test_condition.cpp',
+'wayfire/lexer/lexer.cpp',
+'wayfire/lexer/literal.cpp',
+'wayfire/lexer/symbol.cpp',
+'wayfire/parser/action_parser.cpp',
+'wayfire/parser/condition_parser.cpp',
+'wayfire/parser/rule_parser.cpp',
+'wayfire/rule/rule.cpp',
+'wayfire/rule/rule_interface.cpp',
+'wayfire/variant.cpp',
 ]
 
 wfutils_inc = include_directories('.')
@@ -54,35 +54,35 @@ wfutils = declare_dependency(link_with: lib_wfutils,
 # -------------------------------------------------------------------------------------------------
 # Install headers
 headers_action = [
-'action/action.hpp',
+'wayfire/action/action.hpp',
 ]
 
 headers_condition = [
-'condition/condition.hpp',
-'condition/logic_condition.hpp',
-'condition/test_condition.hpp',
+'wayfire/condition/condition.hpp',
+'wayfire/condition/logic_condition.hpp',
+'wayfire/condition/test_condition.hpp',
 ]
 
 headers_lexer = [
-'lexer/lexer.hpp',
-'lexer/literal.hpp',
-'lexer/symbol.hpp',
+'wayfire/lexer/lexer.hpp',
+'wayfire/lexer/literal.hpp',
+'wayfire/lexer/symbol.hpp',
 ]
 
 headers_parser = [
-'parser/action_parser.hpp',
-'parser/condition_parser.hpp',
-'parser/rule_parser.hpp',
+'wayfire/parser/action_parser.hpp',
+'wayfire/parser/condition_parser.hpp',
+'wayfire/parser/rule_parser.hpp',
 ]
 
 headers_rule = [
-'rule/rule.hpp',
-'rule/rule_interface.hpp',
+'wayfire/rule/rule.hpp',
+'wayfire/rule/rule_interface.hpp',
 ]
 
 headers_root = [
-'utils.hpp',
-'variant.hpp',
+'wayfire/utils.hpp',
+'wayfire/variant.hpp',
 ]
 
 install_headers(headers_action, subdir: 'wayfire/action')

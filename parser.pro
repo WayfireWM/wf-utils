@@ -4,36 +4,36 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-    lexer/lexer.cpp \
-    lexer/literal.cpp \
-    lexer/symbol.cpp \
-    parser/rule_parser.cpp \
-    parser/action_parser.cpp \
-    parser/condition_parser.cpp \
+    wayfire/lexer/lexer.cpp \
+    wayfire/lexer/literal.cpp \
+    wayfire/lexer/symbol.cpp \
+    wayfire/parser/rule_parser.cpp \
+    wayfire/parser/action_parser.cpp \
+    wayfire/parser/condition_parser.cpp \
+    wayfire/action/action.cpp \
+    wayfire/rule/rule.cpp \
+    wayfire/rule/rule_interface.cpp \
+    wayfire/condition/condition.cpp \
+    wayfire/condition/logic_condition.cpp \
+    wayfire/condition/test_condition.cpp \
+    wayfire/variant.cpp \
     main.cpp \
-    action/action.cpp \
-    rule/rule.cpp \
-    rule/rule_interface.cpp \
-    condition/condition.cpp \
-    condition/logic_condition.cpp \
-    condition/test_condition.cpp \
-    variant.cpp
 
 HEADERS += \
-    action/action.hpp \
-    lexer/lexer.hpp \
-    lexer/literal.hpp \
-    lexer/symbol.hpp \
-    parser/rule_parser.hpp \
-    parser/condition_parser.hpp \
-    parser/action_parser.hpp \
-    utils.hpp \
-    condition/condition.hpp \
-    rule/rule.hpp \
-    rule/rule_interface.hpp \
-    condition/logic_condition.hpp \
-    condition/test_condition.hpp \
-    variant.hpp
+    wayfire/action/action.hpp \
+    wayfire/lexer/lexer.hpp \
+    wayfire/lexer/literal.hpp \
+    wayfire/lexer/symbol.hpp \
+    wayfire/parser/rule_parser.hpp \
+    wayfire/parser/condition_parser.hpp \
+    wayfire/parser/action_parser.hpp \
+    wayfire/utils.hpp \
+    wayfire/condition/condition.hpp \
+    wayfire/rule/rule.hpp \
+    wayfire/rule/rule_interface.hpp \
+    wayfire/condition/logic_condition.hpp \
+    wayfire/condition/test_condition.hpp \
+    wayfire/variant.hpp
 
 DISTFILES += \
     meson.build \
