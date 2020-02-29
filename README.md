@@ -1,1 +1,2 @@
-TODO: Complete the README.md
+# wf-utils
+Contains utility classes for Wayfire
