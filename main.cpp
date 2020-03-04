@@ -35,6 +35,8 @@ public:
         std::cout << "void set_property_b(" << property_b << ")" << std::endl;
         _property_b = property_b;
     }
+
+    std::string title;
 private:
     double _property_b;
 };
@@ -60,6 +62,10 @@ public:
             else if (identifier == "property_b")
             {
                 return _test->get_property_b();
+            }
+            else if (identifier == "title")
+            {
+                return _test->title;
             }
         }
 
@@ -143,6 +149,7 @@ int main()
 
     auto data = std::make_shared<test_t>();
     data->property_a = 4;
+    data->title = "Alacritty";
 
     test_interface_t data_interface(data);
 
@@ -150,7 +157,8 @@ int main()
         "on created if property_a equals 4 then set property_b 0.4",
         "on created if (property_a equals 4) | (property_a equals 8) then maximize else minimize",
         "on created then minimize",
-        "on created then maximize else minimize"
+        "on created then maximize else minimize",
+        "on created if title contains \"   Alacritty   \" then maximize"
     };
 
     wf::lexer_t lexer;

@@ -45,7 +45,7 @@ public:
      * @param[in] name Name of the action to execute.
      * @param[in] args Arguments for the action's execution.
      *
-     * @return <code>True</code> if executed correctly, <code>false</code> if not.
+     * @return <code>True</code> if there was an error, <code>false</code> if not.
      */
     virtual bool execute(const std::string &name, const std::vector<variant_t> &args) = 0;
 };
