@@ -32,6 +32,13 @@ public:
      * @return <code>True</code> if an error occurred, <code>false</code> if not.
      */
     bool execute(rule_interface_t &interface);
+
+    /**
+     * @brief to_string Turns the action into a printable string. Useful for debugging.
+     *
+     * @return String representation of the action.
+     */
+    std::string to_string() const;
 private:
     /**
      * @brief _name Name of the command to execute.

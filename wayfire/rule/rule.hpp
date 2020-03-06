@@ -48,6 +48,12 @@ public:
      */
     bool apply(const std::string &signal, rule_interface_t &interface);
 
+    /**
+     * @brief to_string Generates a string representation of the rule. Useful for debugging.
+     *
+     * @return The string representation of the rule.
+     */
+    std::string to_string() const;
 private:
     /**
      * @brief _signal The signal that should trigger the application of this rule.

@@ -50,4 +50,38 @@ bool rule_t::apply(const std::string &signal, rule_interface_t &interface)
     return error;
 }
 
+std::string rule_t::to_string() const
+{
+    std::string out = "rule: [signal: ";
+    out.append(_signal).append(", condition: ");
+    if (_condition)
+    {
+        out.append(_condition->to_string());
+    }
+    else
+    {
+        out.append("nullptr");
+    }
+    out.append(", if_action: ");
+    if (_if_action)
+    {
+        out.append(_if_action->to_string());
+    }
+    else
+    {
+        out.append("nullptr");
+    }
+    out.append(", else_action: ");
+    if (_else_action)
+    {
+        out.append(_else_action->to_string());
+    }
+    else
+    {
+        out.append("nullptr");
+    }
+    out.append("]");
+    return out;
+}
+
 } // End namespace wf.
