@@ -12,7 +12,6 @@ SOURCES += \
     wayfire/parser/condition_parser.cpp \
     wayfire/action/action.cpp \
     wayfire/rule/rule.cpp \
-    wayfire/rule/rule_interface.cpp \
     wayfire/condition/condition.cpp \
     wayfire/condition/logic_condition.cpp \
     wayfire/condition/test_condition.cpp \
@@ -21,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     wayfire/action/action.hpp \
+    wayfire/action/action_interface.hpp \
     wayfire/lexer/lexer.hpp \
     wayfire/lexer/literal.hpp \
     wayfire/lexer/symbol.hpp \
@@ -28,9 +28,9 @@ HEADERS += \
     wayfire/parser/condition_parser.hpp \
     wayfire/parser/action_parser.hpp \
     wayfire/utils.hpp \
+    wayfire/condition/access_interface.hpp \
     wayfire/condition/condition.hpp \
     wayfire/rule/rule.hpp \
-    wayfire/rule/rule_interface.hpp \
     wayfire/condition/logic_condition.hpp \
     wayfire/condition/test_condition.hpp \
     wayfire/variant.hpp

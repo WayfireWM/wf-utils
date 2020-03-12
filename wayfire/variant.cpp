@@ -104,7 +104,7 @@ std::string to_string(const variant_t &v)
     }
     else if (is_bool(v))
     {
-        out.append("bool, value: ").append(std::to_string(get_bool(v)));
+        out.append("bool, value: ").append(std::to_string(static_cast<unsigned int>(get_bool(v))));
     }
     else if (is_float(v))
     {

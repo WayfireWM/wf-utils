@@ -1,7 +1,8 @@
 #include "wayfire/lexer/lexer.hpp"
 #include "wayfire/parser/rule_parser.hpp"
 #include "wayfire/rule/rule.hpp"
-#include "wayfire/rule/rule_interface.hpp"
+#include "wayfire/action/action_interface.hpp"
+#include "wayfire/condition/access_interface.hpp"
 #include "wayfire/variant.hpp"
 #include <algorithm>
 #include <iostream>
@@ -41,14 +42,14 @@ private:
     double _property_b;
 };
 
-class test_interface_t : public wf::rule_interface_t
+class test_access_interface_t : public wf::access_interface_t
 {
 public:
-    test_interface_t(std::shared_ptr<test_t> test) : _test(test)
+    test_access_interface_t(std::shared_ptr<test_t> test) : _test(test)
     {
     }
 
-    virtual ~test_interface_t() override;
+    virtual ~test_access_interface_t() override;
 
     virtual wf::variant_t get(const std::string &identifier, bool &error) override
     {
@@ -72,6 +73,18 @@ public:
         error = true;
         return wf::variant_t("");
     }
+private:
+    std::shared_ptr<test_t> _test;
+};
+
+class test_action_interface_t : public wf::action_interface_t
+{
+public:
+    test_action_interface_t(std::shared_ptr<test_t> test) : _test(test)
+    {
+    }
+
+    virtual ~test_action_interface_t() override;
 
     virtual bool execute(const std::string &name, const std::vector<wf::variant_t> &args) override
     {
@@ -113,7 +126,11 @@ private:
     std::shared_ptr<test_t> _test;
 };
 
-test_interface_t::~test_interface_t()
+test_access_interface_t::~test_access_interface_t()
+{
+}
+
+test_action_interface_t::~test_action_interface_t()
 {
 }
 
@@ -151,7 +168,8 @@ int main()
     data->property_a = 4;
     data->title = "Alacritty";
 
-    test_interface_t data_interface(data);
+    test_access_interface_t access_interface(data);
+    test_action_interface_t action_interface(data);
 
     std::vector<std::string> text = {
         "on created if property_a equals 4 then set property_b 0.4",
@@ -174,7 +192,7 @@ int main()
 
     for (auto rule : rules)
     {
-        rule->apply("created", data_interface);
+        rule->apply("created", access_interface, action_interface);
     }
     /*
 

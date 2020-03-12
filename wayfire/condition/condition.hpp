@@ -6,7 +6,7 @@
 namespace wf
 {
 
-class rule_interface_t;
+class access_interface_t;
 
 /**
  * @brief The condition_t class is the superclass in the condition hierarchy.
@@ -32,7 +32,7 @@ public:
      *
      * @return <code>True</code> if the condition is satisfied, <code>false</code> if not.
      */
-    virtual bool evaluate(rule_interface_t &interface, bool &error) = 0;
+    virtual bool evaluate(access_interface_t &interface, bool &error) = 0;
 
     /**
      * @brief to_string Turns the condtion into a printable string. Useful for debugging.

@@ -9,7 +9,8 @@ namespace wf
 
 class action_t;
 class condition_t;
-class rule_interface_t;
+class access_interface_t;
+class action_interface_t;
 
 /**
  * @brief The rule_t class is a rule (combination of condition and actions) that can be executed against a
@@ -42,11 +43,12 @@ public:
      * Think of this as a built in signal filter.
      *
      * @param[in] signal The signal to apply the rule to.
-     * @param[in] interface The rule_interface_t instance to use for the rule application.
+     * @param[in] access Acessor interface for the condition checks.
+     * @param[in] action Action interface for supporting the execution of actions.
      *
      * @return <code>True</code> if there was an error, <code>false</code> if not.
      */
-    bool apply(const std::string &signal, rule_interface_t &interface);
+    bool apply(const std::string &signal, access_interface_t &access, action_interface_t &action);
 
     /**
      * @brief to_string Generates a string representation of the rule. Useful for debugging.

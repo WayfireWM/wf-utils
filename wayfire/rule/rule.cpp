@@ -1,13 +1,11 @@
+#include "wayfire/rule/rule.hpp"
 #include "wayfire/action/action.hpp"
 #include "wayfire/condition/condition.hpp"
-#include "wayfire/rule/rule.hpp"
 #include <memory>
 #include <string>
 
 namespace wf
 {
-
-class rule_interface_t;
 
 rule_t::rule_t(const std::string &signal,
                std::shared_ptr<condition_t> condition,
@@ -20,7 +18,7 @@ rule_t::rule_t(const std::string &signal,
 {
 }
 
-bool rule_t::apply(const std::string &signal, rule_interface_t &interface)
+bool rule_t::apply(const std::string &signal, access_interface_t &access, action_interface_t &action)
 {
     if ((signal.empty()) || (_condition == nullptr) || (_if_action == nullptr))
     {
@@ -30,18 +28,18 @@ bool rule_t::apply(const std::string &signal, rule_interface_t &interface)
     bool error = false;
     if (signal == _signal)
     {
-        auto check_result = _condition->evaluate(interface, error);
+        auto check_result = _condition->evaluate(access, error);
         if (!error)
         {
             if (check_result)
             {
-                error = _if_action->execute(interface);
+                error = _if_action->execute(action);
             }
             else
             {
                 if (_else_action != nullptr)
                 {
-                    error = _else_action->execute(interface);
+                    error = _else_action->execute(action);
                 }
             }
         }

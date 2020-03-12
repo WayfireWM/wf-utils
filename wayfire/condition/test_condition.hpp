@@ -8,7 +8,7 @@
 namespace wf
 {
 
-class rule_interface_t;
+class access_interface_t;
 
 /**
  * @brief The test_condition_t class is the acstract superclass in the test condition hierarchy. A test_condition_t will compare a property
@@ -31,7 +31,7 @@ public:
     virtual ~test_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override = 0;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override = 0;
 
     // Inherits docs.
     virtual std::string to_string() const override = 0;
@@ -60,7 +60,7 @@ public:
     virtual ~true_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
 
     // Inherits docs.
     virtual std::string to_string() const override;
@@ -81,7 +81,7 @@ public:
     virtual ~equals_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
 
     // Inherits docs.
     virtual std::string to_string() const override;
@@ -104,7 +104,7 @@ public:
     virtual ~contains_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
 
     // Inherits docs.
     virtual std::string to_string() const override;

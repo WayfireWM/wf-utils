@@ -16,7 +16,6 @@ SOURCES := \
 	wayfire/parser/condition_parser.cpp \
 	wayfire/parser/rule_parser.cpp \
 	wayfire/rule/rule.cpp \
-	wayfire/rule/rule_interface.cpp \
 	wayfire/variant.cpp \
 	main.cpp \
 

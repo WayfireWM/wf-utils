@@ -5,7 +5,7 @@
 namespace wf
 {
 
-class rule_interface_t;
+class access_interface_t;
 
 or_condition_t::or_condition_t() : condition_t()
 {
@@ -15,7 +15,7 @@ or_condition_t::~or_condition_t()
 {
 }
 
-bool or_condition_t::evaluate(rule_interface_t &interface, bool &error)
+bool or_condition_t::evaluate(access_interface_t &interface, bool &error)
 {
     if ((error) || (left == nullptr) || (right == nullptr))
     {
@@ -58,7 +58,7 @@ and_condition_t::~and_condition_t()
 {
 }
 
-bool and_condition_t::evaluate(rule_interface_t &interface, bool &error)
+bool and_condition_t::evaluate(access_interface_t &interface, bool &error)
 {
     if ((error) || (left == nullptr) || (right == nullptr))
     {
@@ -101,7 +101,7 @@ not_condition_t::~not_condition_t()
 {
 }
 
-bool not_condition_t::evaluate(rule_interface_t &interface, bool &error)
+bool not_condition_t::evaluate(access_interface_t &interface, bool &error)
 {
     if ((error) || (child == nullptr))
     {

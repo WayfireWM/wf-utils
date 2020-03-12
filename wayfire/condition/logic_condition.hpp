@@ -8,7 +8,7 @@
 namespace wf
 {
 
-class rule_interface_t;
+class access_interface_t;
 
 /**
  * @brief The or_condition_t class is a logical OR condition. It bundles 2 conditions and evaluates them in an
@@ -28,7 +28,7 @@ public:
     virtual ~or_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
 
     // Inherits docs.
     virtual std::string to_string() const override;
@@ -62,7 +62,7 @@ public:
     virtual ~and_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
 
     // Inherits docs.
     virtual std::string to_string() const override;
@@ -95,7 +95,7 @@ public:
     virtual ~not_condition_t() override;
 
     // Inherits docs.
-    virtual bool evaluate(rule_interface_t &interface, bool &error) override;
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
 
     // Inherits docs.
     virtual std::string to_string() const override;

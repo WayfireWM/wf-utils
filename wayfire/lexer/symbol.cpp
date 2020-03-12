@@ -10,11 +10,11 @@
 namespace wf
 {
 
-symbol_t::symbol_t() : type(type_t::END), value("")
+symbol_t::symbol_t() : type(type_t::END), value(std::string(""))
 {
 }
 
-symbol_t::symbol_t(type_t t) : type(t), value("")
+symbol_t::symbol_t(type_t t) : type(t), value(std::string(""))
 {
 }
 

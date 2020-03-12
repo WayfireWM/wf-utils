@@ -1,5 +1,5 @@
 #include "wayfire/condition/test_condition.hpp"
-#include "wayfire/rule/rule_interface.hpp"
+#include "wayfire/condition/access_interface.hpp"
 #include "wayfire/variant.hpp"
 #include <string>
 #include <variant>
@@ -19,7 +19,7 @@ true_condition_t::~true_condition_t()
 {
 }
 
-bool true_condition_t::evaluate(rule_interface_t &interface, bool &error)
+bool true_condition_t::evaluate(access_interface_t &interface, bool &error)
 {
     static_cast<void>(interface);
 
@@ -44,7 +44,7 @@ equals_condition_t::~equals_condition_t()
 {
 }
 
-bool equals_condition_t::evaluate(rule_interface_t &interface, bool &error)
+bool equals_condition_t::evaluate(access_interface_t &interface, bool &error)
 {
     if (error)
     {
@@ -77,7 +77,7 @@ contains_condition_t::~contains_condition_t()
 {
 }
 
-bool contains_condition_t::evaluate(rule_interface_t &interface, bool &error)
+bool contains_condition_t::evaluate(access_interface_t &interface, bool &error)
 {
     if (error)
     {

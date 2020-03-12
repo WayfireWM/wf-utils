@@ -8,7 +8,7 @@
 namespace wf
 {
 
-class rule_interface_t;
+class action_interface_t;
 
 /**
  * @brief The action_t class describes an action to be executed on positive or negative match of a condition.
@@ -31,7 +31,7 @@ public:
      *
      * @return <code>True</code> if an error occurred, <code>false</code> if not.
      */
-    bool execute(rule_interface_t &interface);
+    bool execute(action_interface_t &interface);
 
     /**
      * @brief to_string Turns the action into a printable string. Useful for debugging.

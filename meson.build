@@ -25,7 +25,6 @@ sources = [
 'wayfire/parser/condition_parser.cpp',
 'wayfire/parser/rule_parser.cpp',
 'wayfire/rule/rule.cpp',
-'wayfire/rule/rule_interface.cpp',
 'wayfire/variant.cpp',
 ]
 
@@ -55,9 +54,11 @@ wfutils = declare_dependency(link_with: lib_wfutils,
 # Install headers
 headers_action = [
 'wayfire/action/action.hpp',
+'wayfire/action/action_interface.hpp',
 ]
 
 headers_condition = [
+'wayfire/condition/access_interface.hpp',
 'wayfire/condition/condition.hpp',
 'wayfire/condition/logic_condition.hpp',
 'wayfire/condition/test_condition.hpp',
@@ -77,7 +78,6 @@ headers_parser = [
 
 headers_rule = [
 'wayfire/rule/rule.hpp',
-'wayfire/rule/rule_interface.hpp',
 ]
 
 headers_root = [
