@@ -1,7 +1,7 @@
 project(
         'wf-utils',
         'cpp',
-        version: '0.3',
+        version: '0.4.0',
         license: 'MIT',
         meson_version: '>=0.50.0',
         default_options: [
@@ -98,7 +98,7 @@ install_headers(headers_root, subdir: 'wayfire')
 
 # -------------------------------------------------------------------------------------------------
 # Documentation
-# TODO: Figure out how to do this with meson.
+# TODO: Figure out how to install the doc package with meson.
 
 cdata = configuration_data()
 cdata.set('TOP_SRCDIR', meson.source_root())
