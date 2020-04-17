@@ -15,9 +15,9 @@ namespace wf
 static const std::set<std::string_view> SIGNALS = {"created"};
 
 /**
- * @brief Set of all the keywords recoginzed by the lexer.
+ * @brief Set of all the keywords recognized by the lexer.
  */
-static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on"};
+static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on", "all", "none"};
 
 /**
  * @brief Set of all the operators recognized by the lexer.

@@ -1,4 +1,5 @@
 #include "wayfire/lexer/lexer.hpp"
+#include "wayfire/parser/condition_parser.hpp"
 #include "wayfire/parser/rule_parser.hpp"
 #include "wayfire/rule/rule.hpp"
 #include "wayfire/action/action_interface.hpp"
@@ -160,8 +161,7 @@ int main()
     }
     */
 
-
-
+    /*
     std::string text_reverse = "one two three four five";
 
     auto data = std::make_shared<test_t>();
@@ -194,6 +194,34 @@ int main()
     {
         rule->apply("created", access_interface, action_interface);
     }
+    */
+
+    auto data = std::make_shared<test_t>();
+    data->property_a = 4;
+    data->title = "Alacritty";
+
+    test_access_interface_t access_interface(data);
+    test_action_interface_t action_interface(data);
+
+    std::vector<std::string> text = {
+        "property_a equals 4",
+        "all",
+        "none",
+//        "then",
+        "title contains \"   Alacritty   \""
+    };
+
+    wf::lexer_t lexer;
+    wf::condition_parser_t parser;
+
+    std::vector<std::shared_ptr<wf::condition_t>> conditions;
+
+    for (const auto &t : text)
+    {
+        lexer.reset(t);
+        conditions.push_back(parser.parse(lexer));
+    }
+
     /*
 
     lexer.reset(text_reverse);

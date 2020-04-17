@@ -67,6 +67,25 @@ public:
 };
 
 /**
+ * @brief The false_condition_t class is a placeholder condition that will always return <code>false</code>. This is useful to be able to
+ *        define catch-none rules.
+ */
+class false_condition_t : public condition_t
+{
+public:
+    /**
+     * @brief ~false_condition_t Destructor.
+     */
+    virtual ~false_condition_t() override;
+
+    // Inherits docs.
+    virtual bool evaluate(access_interface_t &interface, bool &error) override;
+
+    // Inherits docs.
+    virtual std::string to_string() const override;
+};
+
+/**
  * @brief The equals_condition_t class will test if the value of the property named by _identifier is the same as the supplied _value.
  */
 class equals_condition_t : public test_condition_t

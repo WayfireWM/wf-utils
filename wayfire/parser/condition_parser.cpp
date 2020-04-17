@@ -19,9 +19,32 @@ condition_parser_t::condition_parser_t()
 
 std::shared_ptr<condition_t> condition_parser_t::parse(lexer_t &lexer)
 {
-    _expression(lexer);
-
+    // Peek at the first symbol to see if we consider a catch-all or catch-none condition.
+    auto symbol = lexer.parse_symbol();
     lexer.reverse();
+
+    if (symbol.type == symbol_t::type_t::KEYWORD)
+    {
+        auto keyword = get_string(symbol.value);
+        if (keyword == "all")
+        {
+            _root = std::make_shared<true_condition_t>();
+        }
+        else if (keyword == "none")
+        {
+            _root = std::make_shared<false_condition_t>();
+        }
+        else
+        {
+            throw std::runtime_error("Condition parser error. Single keyword rules must be 'all' or 'none'.");
+        }
+    }
+    else
+    {
+        _expression(lexer);
+        lexer.reverse();
+    }
+
     std::cout << _root->to_string() << std::endl;
 
     return _root;

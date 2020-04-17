@@ -36,6 +36,23 @@ std::string true_condition_t::to_string() const
     return "true";
 }
 
+false_condition_t::~false_condition_t()
+{
+}
+
+bool false_condition_t::evaluate(access_interface_t &interface, bool &error)
+{
+    static_cast<void>(interface);
+    static_cast<void>(error);
+
+    return false;
+}
+
+std::string false_condition_t::to_string() const
+{
+    return "false";
+}
+
 equals_condition_t::equals_condition_t(const std::string &identifier, const variant_t &value) : test_condition_t(identifier, value)
 {
 }
