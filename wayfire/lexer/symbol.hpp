@@ -17,7 +17,7 @@ static const std::set<std::string_view> SIGNALS = {"created"};
 /**
  * @brief Set of all the keywords recognized by the lexer.
  */
-static const std::set<std::string_view> KEYWORDS = {"equals", "contains", "if", "else", "then", "on", "all", "none"};
+static const std::set<std::string_view> KEYWORDS = {"is", "equals", "contains", "if", "else", "then", "on", "all", "none"};
 
 /**
  * @brief Set of all the operators recognized by the lexer.
