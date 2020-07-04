@@ -23,7 +23,9 @@ sources = [
 'wayfire/lexer/symbol.cpp',
 'wayfire/parser/action_parser.cpp',
 'wayfire/parser/condition_parser.cpp',
+'wayfire/parser/lambda_rule_parser.cpp',
 'wayfire/parser/rule_parser.cpp',
+'wayfire/rule/lambda_rule.cpp',
 'wayfire/rule/rule.cpp',
 'wayfire/variant.cpp',
 ]
@@ -77,6 +79,7 @@ headers_parser = [
 ]
 
 headers_rule = [
+'wayfire/rule/lambda_rule.hpp',
 'wayfire/rule/rule.hpp',
 ]
 

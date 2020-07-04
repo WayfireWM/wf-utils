@@ -5,6 +5,8 @@
 #include "wayfire/action/action_interface.hpp"
 #include "wayfire/condition/access_interface.hpp"
 #include "wayfire/variant.hpp"
+#include "wayfire/parser/lambda_rule_parser.hpp"
+#include "wayfire/rule/lambda_rule.hpp"
 #include <algorithm>
 #include <iostream>
 #include <memory>
@@ -135,6 +137,26 @@ test_action_interface_t::~test_action_interface_t()
 {
 }
 
+bool if_function(void *arg)
+{
+    int *a = reinterpret_cast<int *>(arg);
+    if (a == nullptr) {
+        return true;
+    }
+    std::cout << "IF_FUNCTION! a=" << *a << std::endl;
+    return false;
+}
+
+bool else_function(void *arg)
+{
+    int *a = reinterpret_cast<int *>(arg);
+    if (a == nullptr) {
+        return true;
+    }
+    std::cout << "ELSE_FUNCTION! a=" << *a << std::endl;
+    return false;
+}
+
 int main()
 {
     /*
@@ -201,26 +223,42 @@ int main()
     data->title = "Alacritty";
 
     test_access_interface_t access_interface(data);
-    test_action_interface_t action_interface(data);
+//    test_action_interface_t action_interface(data);
 
-    std::vector<std::string> text = {
-        "property_a equals 4",
-        "all",
-        "none",
+//    std::vector<std::string> text = {
+//        "property_a equals 4",
+//        "all",
+//        "none",
 //        "then",
-        "title contains \"   Alacritty   \""
-    };
+//        "title contains \"   Alacritty   \""
+//    };
 
-    wf::lexer_t lexer;
-    wf::condition_parser_t parser;
+//    wf::lexer_t lexer;
+//    wf::condition_parser_t parser;
 
-    std::vector<std::shared_ptr<wf::condition_t>> conditions;
+//    std::vector<std::shared_ptr<wf::condition_t>> conditions;
 
-    for (const auto &t : text)
+//    for (const auto &t : text)
+//    {
+//        lexer.reset(t);
+//        conditions.push_back(parser.parse(lexer));
+//    }
+
+    std::string text = "on created if title contains \"Alacritty\" & property_a equals 4";
+    wf::lambda_rule_parser_t parser;
+
+    auto rule = parser.parse(text, &if_function, &else_function);
+
+    std::cout << "rule: " << rule->to_string() << std::endl;
+
+    int a = 14;
+
+    auto error = rule->apply("created", access_interface, &a);
+    if (error)
     {
-        lexer.reset(t);
-        conditions.push_back(parser.parse(lexer));
+        std::cout << "Error!" << std::endl;
     }
+
 
     /*
 
