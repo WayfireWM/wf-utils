@@ -92,7 +92,7 @@ void condition_parser_t::_factor(lexer_t &lexer)
             throw std::runtime_error("Condition parser error. Expected keyword.");
         }
         auto keyword = get_string(_symbol.value);
-        if ((keyword != "equals") && (keyword != "contains"))
+        if ((keyword != "equals") && (keyword != "contains") && (keyword != "is"))
         {
             std::string error = "Condition parser error. Unsupported keyword. keyword: ";
             error.append(keyword);
@@ -107,7 +107,7 @@ void condition_parser_t::_factor(lexer_t &lexer)
         }
 
         // Create condition.
-        if (keyword == "equals")
+        if (keyword == "equals" || keyword == "is")
         {
             _root = std::make_shared<equals_condition_t>(identifier, _symbol.value);
         }
