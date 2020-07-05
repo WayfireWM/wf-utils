@@ -15,7 +15,7 @@ class access_interface_t;
  * @note The lambda function executed by this rule as if or else case returns a boolean which is
  *       <code>true</code> if there was an error. <code>False</code> if no error.
  */
-using lambda_t = std::function<bool(void *)>;
+using lambda_t = std::function<bool()>;
 
 /**
  * @brief The lambda_rule_t class is a rule (combination of condition and action lambdass).
@@ -47,7 +47,7 @@ class lambda_rule_t
 
     /**
      * @brief apply Applies the rule to the given trigger signal. The interface access_interface_t is used to
-     *              obtain data. The argument void pointer is passed to the if_lambda and else_lambda.
+     *              obtain data.
      *
      * The rule will not do anything if the signal does not match the value of _signal. It is implemented this
      * way to allow a set of rules to be 'applied' on all signals, and only have the relevant rules execute.
@@ -55,11 +55,10 @@ class lambda_rule_t
      *
      * @param[in] signal The signal to apply the rule to.
      * @param[in] access Acessor interface for the condition checks.
-     * @param[in] argument Argument pointer, passed to the lambdas if they execute.
      *
      * @return <code>True</code> if there was an error, <code>false</code> if not.
      */
-    bool apply(const std::string &signal, access_interface_t &access, void *argument = nullptr);
+    bool apply(const std::string &signal, access_interface_t &access);
 
     /**
      * @brief to_string Generates a string representation of the rule. Useful for debugging.

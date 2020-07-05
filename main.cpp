@@ -137,23 +137,15 @@ test_action_interface_t::~test_action_interface_t()
 {
 }
 
-bool if_function(void *arg)
+bool if_function()
 {
-    int *a = reinterpret_cast<int *>(arg);
-    if (a == nullptr) {
-        return true;
-    }
-    std::cout << "IF_FUNCTION! a=" << *a << std::endl;
+    std::cout << "IF_FUNCTION!" << std::endl;
     return false;
 }
 
-bool else_function(void *arg)
+bool else_function()
 {
-    int *a = reinterpret_cast<int *>(arg);
-    if (a == nullptr) {
-        return true;
-    }
-    std::cout << "ELSE_FUNCTION! a=" << *a << std::endl;
+    std::cout << "ELSE_FUNCTION!" << std::endl;
     return false;
 }
 
@@ -244,16 +236,14 @@ int main()
 //        conditions.push_back(parser.parse(lexer));
 //    }
 
-    std::string text = "on created if title contains \"Alacritty\" & property_a equals 4";
+    std::string text = "on fullscreened if title contains \"Alacritty\" & property_a equals 4";
     wf::lambda_rule_parser_t parser;
 
     auto rule = parser.parse(text, &if_function, &else_function);
 
     std::cout << "rule: " << rule->to_string() << std::endl;
 
-    int a = 14;
-
-    auto error = rule->apply("created", access_interface, &a);
+    auto error = rule->apply("fullscreened", access_interface);
     if (error)
     {
         std::cout << "Error!" << std::endl;

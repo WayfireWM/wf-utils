@@ -24,7 +24,7 @@ void lambda_rule_t::setElseLambda(lambda_t else_lambda)
     _else_lambda = else_lambda;
 }
 
-bool lambda_rule_t::apply(const std::string &signal, access_interface_t &access, void *argument)
+bool lambda_rule_t::apply(const std::string &signal, access_interface_t &access)
 {
     if ((signal.empty()) || (_condition == nullptr) || (_if_lambda == nullptr))
     {
@@ -39,13 +39,13 @@ bool lambda_rule_t::apply(const std::string &signal, access_interface_t &access,
         {
             if (check_result)
             {
-                error = _if_lambda(argument);
+                error = _if_lambda();
             }
             else
             {
                 if (_else_lambda != nullptr)
                 {
-                    error = _else_lambda(argument);
+                    error = _else_lambda();
                 }
             }
 
