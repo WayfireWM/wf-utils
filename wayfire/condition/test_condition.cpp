@@ -109,13 +109,13 @@ bool contains_condition_t::evaluate(access_interface_t &interface, bool &error)
     }
 
     // If the retrieved value or search value is not a string, this can't work.
-    if ((!is_string(_value)) || (!is_string(value)))
+    if ((!is_string(value)) || (!is_string(_value)))
     {
         error = true;
         return false;
     }
 
-    return get_string(_value).find(get_string(value)) != std::string::npos;
+    return get_string(value).find(get_string(_value)) != std::string::npos;
 }
 
 std::string contains_condition_t::to_string() const
