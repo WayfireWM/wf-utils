@@ -128,7 +128,12 @@ void condition_parser_t::_factor(lexer_t &lexer)
     else if ((_symbol.type == symbol_t::type_t::STRUCTURAL) && (get_string(_symbol.value) == "("))
     {
         _expression(lexer);
-        _symbol = lexer.parse_symbol(); // Discards )
+        // Expect ) and discard it
+        if (_symbol.type != symbol_t::type_t::STRUCTURAL || (get_string(_symbol.value) != ")"))
+        {
+            throw std::runtime_error("Condition parser error. Expected \')\'");
+        }
+        _symbol = lexer.parse_symbol();
     }
     else {
         throw std::runtime_error("Condition parser error. Unexpected symbol.");
