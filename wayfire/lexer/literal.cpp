@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdexcept>
 #include <string>
+#include <bits/stdc++.h>
 
 namespace wf
 {
@@ -86,7 +87,7 @@ variant_t parse_literal(const std::string &s)
     }
 
     // Deal with float or double here.
-    if (s.find('.') != std::string::npos)
+    if (std::count(std::begin(s), std::end(s), '.') == 1)
     {
         // Float or Double.
         if ((s.find('f') != std::string::npos) || (s.find('F') != std::string::npos))
