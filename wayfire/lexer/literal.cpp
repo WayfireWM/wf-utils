@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <stdexcept>
 #include <string>
-#include <bits/stdc++.h>
+#include <algorithm>
 
 namespace wf
 {
