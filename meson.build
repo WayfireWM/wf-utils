@@ -76,6 +76,7 @@ headers_parser = [
 'wayfire/parser/action_parser.hpp',
 'wayfire/parser/condition_parser.hpp',
 'wayfire/parser/rule_parser.hpp',
+'wayfire/parser/lambda_rule_parser.hpp',
 ]
 
 headers_rule = [
