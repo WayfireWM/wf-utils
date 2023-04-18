@@ -1,6 +1,7 @@
 #include "wayfire/rule/lambda_rule.hpp"
 #include "wayfire/condition/condition.hpp"
 #include <cstddef>
+#include <cstdint>
 #include <functional>
 #include <memory>
 #include <sstream>
