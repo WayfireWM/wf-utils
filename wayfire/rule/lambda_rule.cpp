@@ -2,6 +2,7 @@
 #include "wayfire/condition/condition.hpp"
 #include <cstddef>
 #include <cstdint>
+#include <cstdint>
 #include <functional>
 #include <memory>
 #include <sstream>
