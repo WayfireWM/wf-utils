@@ -6,6 +6,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <cstdint>
 
 namespace wf
 {
