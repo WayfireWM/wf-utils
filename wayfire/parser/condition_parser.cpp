@@ -80,7 +80,7 @@ void condition_parser_t::_factor(lexer_t &lexer)
 {
     _symbol = lexer.parse_symbol();
 
-    if (_symbol.type == symbol_t::type_t::IDENTIFIER)
+    if (_symbol.type == symbol_t::type_t::IDENTIFIER || _symbol.type == symbol_t::type_t::SIGNAL)
     {
         // Identifier.
         auto identifier = get_string(_symbol.value);
