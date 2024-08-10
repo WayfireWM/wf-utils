@@ -101,7 +101,7 @@ void condition_parser_t::_factor(lexer_t &lexer)
 
         // Value.
         _symbol = lexer.parse_symbol();
-        if (_symbol.type != symbol_t::type_t::LITERAL)
+        if (_symbol.type != symbol_t::type_t::LITERAL && _symbol.type != symbol_t::type_t::IDENTIFIER)
         {
             throw std::runtime_error("Condition parser error. Expected literal.");
         }
