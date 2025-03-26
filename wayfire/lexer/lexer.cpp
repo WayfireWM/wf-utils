@@ -179,7 +179,7 @@ variant_t lexer_t::_parse_encapsulated_literal(const std::string &s_bound, const
     auto length = (found_at + e_bound.size()) - _parse_position;
     auto literal_text = _text.substr(_parse_position, length);
     _parse_position += length;
-    return parse_literal(literal_text);
+    return variant_t(literal_text);
 }
 
 variant_t lexer_t::_parse_comment_literal()
@@ -187,7 +187,7 @@ variant_t lexer_t::_parse_comment_literal()
     // Comment literal runs from the comment sign to the end of the line.
     auto literal_text = _text.substr(_parse_position);
     _parse_position = _size;
-    return parse_literal(literal_text);
+    return variant_t(literal_text);
 }
 
 } // End namespace wf.
