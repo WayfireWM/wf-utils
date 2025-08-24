@@ -45,8 +45,6 @@ std::shared_ptr<condition_t> condition_parser_t::parse(lexer_t &lexer)
         lexer.reverse();
     }
 
-    std::cout << _root->to_string() << std::endl;
-
     return _root;
 }
 
