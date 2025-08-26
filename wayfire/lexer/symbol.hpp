@@ -12,7 +12,7 @@ namespace wf
 /**
  * @brief Set of all the signals recognized by the lexer.
  */
-static const std::set<std::string_view> SIGNALS = {"created", "maximized", "unmaximized", "minimized", "fullscreened"};
+static const std::set<std::string_view> SIGNALS = {"created", "maximized", "unmaximized", "minimized", "unminimized", "fullscreened", "unfullscreened"};
 
 /**
  * @brief Set of all the keywords recognized by the lexer.
