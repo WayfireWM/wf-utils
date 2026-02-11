@@ -87,7 +87,15 @@ variant_t parse_literal(const std::string &s)
     }
 
     // Deal with float or double here.
-    if (std::count(std::begin(s), std::end(s), '.') == 1)
+    //original if (std::count(std::begin(s), std::end(s), '.') == 1)
+    bool numeric_like = std::all_of(s.begin(), s.end(),
+    [](char c)
+    {
+        return std::isdigit(c) || c == '.' || c == '-' || c == '+' || c == 'f' || c == 'F';
+    });
+
+    if (numeric_like && std::count(s.begin(), s.end(), '.') == 1)
+
     {
         // Float or Double.
         if ((s.find('f') != std::string::npos) || (s.find('F') != std::string::npos))
