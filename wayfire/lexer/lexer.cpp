@@ -53,14 +53,14 @@ symbol_t lexer_t::parse_symbol()
     }
     else
     {
+        while ((_parse_position < _size) && std::isspace(_text.at(_parse_position)))
+        {
+            ++_parse_position;
+        }
+
         if (_parse_position >= _size)
         {
             return symbol_t(symbol_t::type_t::END);
-        }
-
-        while (std::isspace(_text.at(_parse_position)))
-        {
-            ++_parse_position;
         }
 
         _symbol_position = _parse_position;
